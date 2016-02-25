@@ -24,9 +24,6 @@
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/models/menu_model.php</file>
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/views/admin/show_dengue.php</file>
         </group>
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/news.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/site.php</file>
-        </group>
+        <group name="yii"/>
     </open-files>
 </project-private>

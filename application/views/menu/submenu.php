@@ -15,7 +15,7 @@
     ?>
     <div class="row" style=" margin: 0px; padding: 0px;">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-left: 0px;">
-            <h3 id="head_submenu"><img src="<?= base_url() ?>icon_menu/<?php echo $masmenu->icon ?>"> <?php echo $head ?></h3>
+            <h3 id="head_submenu"><img src="<?= base_url() ?>icon_menu/<?php echo $masmenu->icon ?>" style="max-height:42px;"> <?php echo $head ?></h3>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-right: 0px;">
             <?php echo $model->breadcrumb($list, $active); ?>
