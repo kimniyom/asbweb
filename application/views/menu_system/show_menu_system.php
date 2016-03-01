@@ -1,5 +1,3 @@
-
-<!-- Ckeditor -->    
 <script type="text/javascript">
     $(document).ready(function () {
         $("#add_new").click(function () {
@@ -84,13 +82,12 @@ $active = $head;
         <?php echo $model->breadcrumb($list, $active); ?>
     </div>
 </div>
-
-
 <hr id="hr"/>
-
 <!-- Dialog Insert News -->
 
-<div class="btn btn-default" style="float:right;" id="add_new"><i class="glyphicon glyphicon-plus"></i> เพิ่มระบบงานหรือลิงค์ภายนอก</div>
+<div class="btn btn-default" style="float:right;" id="add_new">
+    <i class="glyphicon glyphicon-plus"></i> เพิ่มระบบงานหรือลิงค์ภายนอก
+</div>
 
 <table width="100%" id="tb_mas_menu" class="table table-striped">
     <thead>
@@ -148,9 +145,7 @@ $active = $head;
 <div class="modal fade" id="popup_edit">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-body" id="load_form_edit">
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
@@ -160,8 +155,6 @@ $active = $head;
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- End POPUP Edit -->
-
-
 
 <div class="modal fade" tabindex="-1" role="dialog" id="box_insert_new">
     <div class="modal-dialog">
@@ -184,7 +177,6 @@ $active = $head;
                     <input type="reset" class="btn btn-danger" value="ยกเลิก" />
                 </form>
             </div>
-
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

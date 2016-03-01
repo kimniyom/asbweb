@@ -22,7 +22,6 @@
         </div>
     </div>
 
-
     <hr id="hr"/>
 
     <table class="table table-hover table-bordered table-responsive" id="tb_submenu">
@@ -64,7 +63,8 @@
                     <td><i class="<?php echo $typefile ?> fa-2x text-warning"></i> 
                         <?= $sub->sub_name ?>
                         <a href="<?= $link ?>" <?= $target ?> class="pull-right">
-                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-download"></i> <?php echo $text; ?></button></a>
+                            <button type="button" class="btn btn-default btn-sm">
+                                <i class="fa fa-download"></i> <?php echo $text; ?></button></a>
                     </td>
                 </tr>
 
@@ -72,8 +72,8 @@
         </tbody>
     </table>
 </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#tb_submenu").dataTable();
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tb_submenu").dataTable();
+    });
+</script>

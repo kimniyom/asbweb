@@ -1,5 +1,4 @@
 <!-- HTML code from Bootply.com editor -->
-
 <!--main-->
 <div class="container">
     <?php

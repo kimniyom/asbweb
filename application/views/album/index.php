@@ -1,7 +1,6 @@
 <?php
   $this->load->model('photo_model','photo');
 ?>
-
 <!--main-->
   <div class="container">
       <?php

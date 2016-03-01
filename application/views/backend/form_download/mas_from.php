@@ -1,4 +1,3 @@
-
 <style type="text/css">
     .t_box{ width:97%;}
 </style>
@@ -102,9 +101,7 @@ echo $model->breadcrumb($list, $active);
 ?>
 
 <h3><i class="fa fa-file-text-o"></i> <?= $head ?></h3>
-
 <hr/>
-
 <a href="javascript:void(0);" id="c_insert">
     <div class="btn btn-success" style=" float:right;">
         <i class=" glyphicon glyphicon-plus"></i> เพิ่มแบบฟอร์ม
@@ -158,7 +155,6 @@ echo $model->breadcrumb($list, $active);
 </table>
 
 <!-- Maneger -->
-
 
 <div id="confrim" class="modal fade">
     <div class="modal-dialog">
@@ -223,7 +219,6 @@ echo $model->breadcrumb($list, $active);
     </div>
 </div>
 
-
 <!-- Edit -- >
 <!-- 
 #Insert Menu 
@@ -245,4 +240,3 @@ echo $model->breadcrumb($list, $active);
         </div>
     </div>
 </div>
-

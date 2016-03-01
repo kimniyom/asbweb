@@ -1,4 +1,3 @@
-
 <?php
 $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();
@@ -6,7 +5,6 @@ $homepage = new homepage_model();
 $sub_homepage = new sub_homepage_model();
 
 $permission_homepage = $this->user->get_permission_user($this->session->userdata('user_id'));
-
 
 $list = array(
     array('url' => 'takmoph_admin', 'label' => 'เมนูหลัก'),
@@ -176,7 +174,6 @@ echo $model->breadcrumb($list, $active);
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 <!--
 ###### Dialog Edit ######

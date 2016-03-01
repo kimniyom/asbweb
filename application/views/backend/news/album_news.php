@@ -12,17 +12,6 @@
     <?php
     foreach ($images->result() as $rs) {
         ?>
-        <!--
-        <div class="col-lg-3 col-md-3 col-sm-3">
-            <div class="thumbnail">
-                <div class="btn btn-danger" style=" padding:2px  5px;position: absolute;top:0px; right: 0px; z-index: 300;"
-                     onclick="delete_img_album('<?//php echo $rs->id?>','<?//php echo $rs->images?>');">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </div>
-                <img src="<?//php echo base_url() . "upload_images/news/" . $rs->images; ?>" id="set_img" class="portrait"/>
-            </div>
-        </div>
-      -->
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
             <div class="container-card" style="max-height:250px;">
                 <div class="img-wrapper">

@@ -1,5 +1,4 @@
-   
-<?php
+   <?php
 $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();
 /*
@@ -49,7 +48,6 @@ echo $model->breadcrumb($list, $active);
         <?php endforeach; ?>
     </tbody>
 </table>
-
 
 <script type="text/javascript">
     $(document).ready(function () {

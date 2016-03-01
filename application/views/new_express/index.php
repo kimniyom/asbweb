@@ -1,4 +1,3 @@
-   
 <div class="container">
     <?php
     $this->load->library('takmoph_libraries');
@@ -8,7 +7,6 @@
             //array('url' => 'newexpress', 'label' => 'ประกาศ'),
             //array('url' => '', 'label' => 'menu2')
     );
-
 
     $active = "ประกาศด่วน";
 //$list = "";
@@ -22,9 +20,7 @@
             <?php echo $lib->breadcrumb($list, $active); ?>
         </div>
     </div>
-
     <hr id="hr"/>
-
     <table class="table table-striped" id="tb_news_express">
         <thead>
             <tr>
@@ -42,7 +38,7 @@
                     <td style=" display: none;"><?php echo $i; ?></td>
                     <td>
                         <font style="color:red;">(<?php echo $rs->create_date ?>) </font>
-                        <a href="<?php echo site_url('newexpress/view/'.$rs->id)?>" style=" text-decoration: none;"><?php echo $rs->title; ?></a> </td>
+                        <a href="<?php echo site_url('newexpress/view/' . $rs->id) ?>" style=" text-decoration: none;"><?php echo $rs->title; ?></a> </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -53,5 +49,4 @@
     $(document).ready(function () {
         $("#tb_news_express").dataTable();
     });
-
 </script>

@@ -176,8 +176,6 @@ echo $model->breadcrumb($list, $active);
                 <?php } ?>
 
                 <td>
-
-
                     <?php if ($rs->flag_delete == '1') { ?>
                         <p style="color:red;">ข่าวโดนลบ</p>
                     <?php } else { ?>
@@ -208,7 +206,6 @@ echo $model->breadcrumb($list, $active);
     </tbody>
 </table>
 
-
 <!-- 
     Add Edit Delete 
 -->
@@ -230,9 +227,7 @@ echo $model->breadcrumb($list, $active);
                     <input type="text" id="user_" name="user_" style="width:98%;"  class="form-control input-mini"
                            value="<?= $this->session->userdata('name') . '-' . $this->session->userdata('lname'); ?>" readonly="readonly"/>
                     <label>รายละเอียด</label>
-
                     <textarea id="detailnews" name="detailnews" class="form-control" rows="3"></textarea> 
-
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-success" value="บันทึกข้อมูล" />

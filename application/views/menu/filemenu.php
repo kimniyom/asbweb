@@ -33,38 +33,36 @@
     <hr id="hr"/>
 
     <!-- Dialog Insert News -->
-
-            <table class="table table-bordered table-hover" id="tb_filemenu">
-                <thead>
-                    <tr>
-                        <th align="left" style=" width: 2%;">#</th>
-                        <th align="left">หัวข้อ</th>
-                        <th align="left" style=" width: 10%;">ไฟล์</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($file->result() as $rs):
-                        ?>
-                        <tr>
-                            <td><?= $i++ ?></td>
-                            <td align="left"><?= $rs->title ?></td>
-                            <td align="center">
-                                <?php if (!empty($rs->file)) { ?>
-                                    <a href="<?php echo base_url() ?>file_download/<?= $rs->file ?>" target="_blank">
-                                        <div class="btn btn-default btn-xs">
-                                            <i class=" glyphicon glyphicon-download-alt"></i> Download
-                                        </div></a>
-                                <?php } else { ?>
-                                    ไฟล์ไม่มี
-                                <?php } ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-
+    <table class="table table-bordered table-hover" id="tb_filemenu">
+        <thead>
+            <tr>
+                <th align="left" style=" width: 2%;">#</th>
+                <th align="left">หัวข้อ</th>
+                <th align="left" style=" width: 10%;">ไฟล์</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 1;
+            foreach ($file->result() as $rs):
+                ?>
+                <tr>
+                    <td><?= $i++ ?></td>
+                    <td align="left"><?= $rs->title ?></td>
+                    <td align="center">
+                        <?php if (!empty($rs->file)) { ?>
+                            <a href="<?php echo base_url() ?>file_download/<?= $rs->file ?>" target="_blank">
+                                <div class="btn btn-default btn-xs">
+                                    <i class=" glyphicon glyphicon-download-alt"></i> Download
+                                </div></a>
+                        <?php } else { ?>
+                            ไฟล์ไม่มี
+                        <?php } ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
 
 <script type="text/javascript" charset="utf-8">

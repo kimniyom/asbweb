@@ -15,7 +15,6 @@
             }
         });
     });
-
 </script>
 
 <script type="text/javascript">
@@ -134,7 +133,6 @@ echo $model->breadcrumb($list, $active);
     </tbody>
 </table>
 
-
 <!--- 
     #### Insert Update Delete ####
 ---->
@@ -171,7 +169,6 @@ echo $model->breadcrumb($list, $active);
         </div>
     </div>
 </div>
-
 
 <!---- Update ----->
 <div id="myModal" class="modal fade">

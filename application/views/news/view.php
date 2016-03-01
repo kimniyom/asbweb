@@ -64,9 +64,7 @@
                             <a href="<?php echo base_url() ?>upload_images/news/<?= $rs->images ?>" class="fancybox" rel="ligthbox">
                                 <div class="container-card" style="max-height: 100px;">
                                     <div class="img-wrapper">
-
                                         <img src="<?php echo base_url() ?>upload_images/news/<?= $rs->images ?>" class="img-responsive" style="height:100px;"/>
-
                                     </div>
                                 </div>
                             </a>
@@ -85,7 +83,6 @@
             -->
 
             <div class="row">
-
                 <h4 id="head_submenu" style=" color: #ff0000; font-weight: bold; margin-left: 15px;"><i class="fa fa-fire"></i> ข่าว HOT</h4>
                 <hr/>
                 <?php
@@ -107,7 +104,6 @@
                             <p class="detail">
                                 <?php
                                 //$this->session->userdata('width');
-
                                 $text = strlen($hots->titel);
                                 if ($text > 160) {
                                     //echo iconv_substr($news->titel,'0','100')."...";
@@ -127,7 +123,6 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-                
             </div>
         </div>
 

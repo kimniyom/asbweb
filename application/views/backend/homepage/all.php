@@ -21,7 +21,6 @@
                   <button type="button" class="btn btn-default btn-sm up"><i class="fa fa-chevron-up text-success"></i>ขึ้น</button>
                   <button type="button" class="btn btn-default btn-sm down"><i class="fa fa-chevron-down text-warning"></i>ลง</button>
                 </td>
-
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -53,7 +52,7 @@
             var url = "<?php echo site_url('backend/homepage/set_level')?>";
             var data = {
               id: id,level: level
-            }
+            };
 
             $.post(url,data,function(success){
               a = (a+=1);

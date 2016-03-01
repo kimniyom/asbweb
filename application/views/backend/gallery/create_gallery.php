@@ -1,4 +1,3 @@
-
 <style type="text/css">
     .t_box{ width:97%;}
 </style>
@@ -47,9 +46,7 @@ echo $model->breadcrumb($list, $active);
 ?>
 
 <h3><i class="fa fa-file-image-o"></i> <?= $head ?></h3>
-
 <hr/>
-
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
         <div class="container-card" style="height:200px;">

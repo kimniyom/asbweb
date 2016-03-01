@@ -1,4 +1,3 @@
-
 <?php
 $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();

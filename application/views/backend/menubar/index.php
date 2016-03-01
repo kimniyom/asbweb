@@ -267,7 +267,7 @@ $active = $head;
 <button type="button" class="btn btn-default pull-right" onclick="save()">
     <i class="fa fa-save"></i> บันทึกการเปลี่ยนแปลง
 </button>
-<br/
+<br/>
 
 <!--
     ###### Add Navbar ######

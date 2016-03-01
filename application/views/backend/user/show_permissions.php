@@ -125,11 +125,9 @@ echo $model->breadcrumb($list, $active);
 
 </div>
 
-
 <?php if ($user->status != 'S') { ?>
 
     <div class="row">
-
         <div class="col-sm-12 col-md-6 col-lg-6">
 
             <div class="panel panel-default">

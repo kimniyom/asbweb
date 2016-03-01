@@ -2,7 +2,6 @@
     <?php
     $this->load->library('takmoph_libraries');
     $model = new takmoph_libraries();
-
     /*
       $list = array(
       array('url' => 'backend/homepage', 'label' => 'ตัวอย่าง'),
@@ -10,7 +9,6 @@
       );
      *
      */
-
     $active = $head;
     $list = "";
     //echo $model->breadcrumb($list, $active);
@@ -66,7 +64,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
 </div>
 
 <script type="text/javascript">

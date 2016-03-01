@@ -68,7 +68,7 @@ $active = $head;
     <i class="fa fa-save"></i> บันทึกการเปลี่ยนแปลง
 </button>
 <br/>
-<br/
+<br/>
 
 <!--########################### Footer ########################-->
 <nav class="navbar navbar-default" role="navigation" style=" margin: 0px; background: <?php echo $style->color_navbar; ?>" id="footer">

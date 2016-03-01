@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#file_upload').uploadify({
@@ -18,8 +17,6 @@
         });
     });
 </script>
-
-
 
 <?php
 $this->load->library('takmoph_libraries');
@@ -41,7 +38,6 @@ $active = $head;
         <?php echo $model->breadcrumb($list, $active); ?>
     </div>
 </div>
-
 
 <hr id="hr"/>
 <h4>เรื่อง :: <?php echo $title; ?></h4><br/>

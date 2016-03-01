@@ -124,7 +124,7 @@
     var style = {
       "background": color,
       "color": text
-    }
+    };
     $("#update_bg_color").css(style);
   }
 </script>

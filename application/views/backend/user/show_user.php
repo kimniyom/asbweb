@@ -1,5 +1,4 @@
-   
-<script type="text/javascript">
+   <script type="text/javascript">
     $(document).ready(function () {
         $("#add_new").click(function () {
             $("#box-add-user").modal();
@@ -55,7 +54,6 @@ echo $model->breadcrumb($list, $active);
 <div class="btn btn-success" style="float:right;" id="add_new">
     <span class=" glyphicon glyphicon-plus"></span> เพิ่มผู้ใช้งานระบบ</div>
 
-
 <table width="100%" id="tb_mas_menu" class="table table-striped">
     <thead>
         <tr>
@@ -94,7 +92,6 @@ echo $model->breadcrumb($list, $active);
     </tbody>
 </table>
 
-
 <!-- 
         ###### Modal Insert User ###### 
 -->
@@ -126,7 +123,6 @@ echo $model->breadcrumb($list, $active);
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
     function delete_user(Id) {

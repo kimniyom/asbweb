@@ -7,8 +7,6 @@
         array('url' => 'newexpress', 'label' => 'ประกาศ'),
             //array('url' => '', 'label' => 'menu2')
     );
-
-   
     $active = "ด่วน";
 //$list = "";
     //echo $lib->breadcrumb($list, $active);
@@ -28,5 +26,4 @@
     <hr/>
     <div class="pull-right" style=" margin-right: 15px;"><i class="fa fa-calendar"></i> <?php echo $model->create_date; ?></div>
     <br/><br/>
-
 </div>

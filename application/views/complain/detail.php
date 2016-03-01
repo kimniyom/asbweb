@@ -13,7 +13,11 @@
 </script>
 
 <ul class="breadcrumb">
-    <li><a href="<?php echo site_url('complain/view') ?>"><i class="icon icon-home"></i> หน้าร้องเรียน</a> <span class="divider">/</span></li>
+    <li>
+        <a href="<?php echo site_url('complain/view') ?>">
+            <i class="icon icon-home"></i> หน้าร้องเรียน</a> 
+        <span class="divider">/</span>
+    </li>
     <li class="active">รายละเอียด</li>
 </ul>
 

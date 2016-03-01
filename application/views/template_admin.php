@@ -156,7 +156,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                     <center>
-                        <?php echo $style->footer; ?> <a href="http://www.theassembler.net/asbwentools" target="_blank">เกี่ยวกับ Asbwebtools</a>
+                        <?php echo $style->footer; ?> <a href="http://www.theassembler.net/asbwebtools" target="_blank">เกี่ยวกับ Asbwebtools</a>
                     </center>
                 </div>
             </div>

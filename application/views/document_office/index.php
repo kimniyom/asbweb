@@ -37,7 +37,7 @@ function get_style_news($Id) {
 
                     </a>
                 <?php endforeach; ?>
-                <a href="<?php echo site_url('document_office/views/7');?>" class="list-group-item" style=" text-align: right;">
+                <a href="<?php echo site_url('document_office/views/7'); ?>" class="list-group-item" style=" text-align: right;">
                     ทั้งหมด ...<i class="fa fa-angle-double-right"></i>
                 </a>
             </div>
@@ -59,7 +59,7 @@ function get_style_news($Id) {
 
                     </a>
                 <?php endforeach; ?>
-                <a href="<?php echo site_url('document_office/views/8');?>" class="list-group-item" style=" text-align: right;">
+                <a href="<?php echo site_url('document_office/views/8'); ?>" class="list-group-item" style=" text-align: right;">
                     ทั้งหมด ...<i class="fa fa-angle-double-right"></i>
                 </a>
             </div>
@@ -98,7 +98,7 @@ function get_style_news($Id) {
                         <?php echo $rs3->DO_Title ?><br/>
                     </a>
                 <?php endforeach; ?>
-                <a href="<?php echo site_url('document_office/views/3');?>" class="list-group-item" style=" text-align: right;">
+                <a href="<?php echo site_url('document_office/views/3'); ?>" class="list-group-item" style=" text-align: right;">
                     ทั้งหมด ...<i class="fa fa-angle-double-right"></i>
                 </a>
             </div>
@@ -119,7 +119,7 @@ function get_style_news($Id) {
                         <?php echo $rs4->DO_Title ?><br/>
                     </a>
                 <?php endforeach; ?>
-                <a href="<?php echo site_url('document_office/views/4');?>" class="list-group-item" style=" text-align: right;">
+                <a href="<?php echo site_url('document_office/views/4'); ?>" class="list-group-item" style=" text-align: right;">
                     ทั้งหมด ...<i class="fa fa-angle-double-right"></i>
                 </a>
             </div>
@@ -140,7 +140,7 @@ function get_style_news($Id) {
                         <?= $semina->Store_Title ?>
                     </a>
                 <?php endforeach; ?>
-                <a href="<?php echo site_url('document_office/views/9');?>" class="list-group-item" style=" text-align: right;">
+                <a href="<?php echo site_url('document_office/views/9'); ?>" class="list-group-item" style=" text-align: right;">
                     ทั้งหมด ...<i class="fa fa-angle-double-right"></i>
                 </a>
             </div>

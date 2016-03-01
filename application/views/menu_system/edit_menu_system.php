@@ -23,6 +23,5 @@
                     <div class="btn btn-info btn-sm"><i class="glyphicon glyphicon-pencil"></i> แก้ไขรูป</div></a>
             </div>
         </div>
-
     </div>
 </div>

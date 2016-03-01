@@ -1,4 +1,3 @@
-
 <style type="text/css">
     .t_box{ width:97%;}
     #tb_mas_menu thead tr{ border-top: 2px #999999 solid;}
@@ -153,13 +152,13 @@
         }
 
         var data = {
-          mas_menu: mas_menu,
-          mas_status: mas_status,
-          bgcolor: bgcolor,
-          textcolor: textcolor,
-          _link: _link,
-          icon_id: icon_id,
-          link_out: link_out
+            mas_menu: mas_menu,
+            mas_status: mas_status,
+            bgcolor: bgcolor,
+            textcolor: textcolor,
+            _link: _link,
+            icon_id: icon_id,
+            link_out: link_out
         };
 
         $.post(url, data,
@@ -169,9 +168,6 @@
         );// Endpost
     }
 </script>
-
-
-
 
 <!-- ############ -->
 <?php
@@ -196,12 +192,11 @@ $active = $head;
 
 <hr id="hr"/>
 
-
 <a href="javascript:void(0);" id="c_insert"><div class="btn btn-default" style=" float:right;">
         <span class=" glyphicon glyphicon-plus text-success"></span> เพิ่มเมนู</div></a>
 
 <a href="javascript:help();"><div class="btn btn-default" style=" float:left;">
-                <i class="fa fa-lightbulb-o text-info"></i> ตัวอย่าง</div></a>
+        <i class="fa fa-lightbulb-o text-info"></i> ตัวอย่าง</div></a>
 
 <table id="tb_mas_menu" class="table table-striped">
     <thead>
@@ -216,14 +211,15 @@ $active = $head;
             <th align="center">ลำดับ</th>
             <th></th>
             <th style="text-align:right;">
-              <button type="button" class="btn btn-default btn-sm" onclick="save_sort_order()"><i class="fa fa-save text-primary"></i> บันทึก</button>
+                <button type="button" class="btn btn-default btn-sm" onclick="save_sort_order()"><i class="fa fa-save text-primary"></i> บันทึก</button>
             </th>
         </tr>
     </thead>
     <tbody>
         <?php
         $i = 1;
-        foreach ($mas_menu->result() as $rs):?>
+        foreach ($mas_menu->result() as $rs):
+            ?>
             <tr>
                 <td><?= $i++ ?></td>
                 <td><?php echo $rs->id ?></td>
@@ -268,14 +264,13 @@ $active = $head;
                     </div>
                 </td>
                 <td style="width: 15%; text-align:right;">
-                  <button type="button" class="btn btn-default btn-sm up"><i class="fa fa-chevron-up text-success"></i>ขึ้น</button>
-                  <button type="button" class="btn btn-default btn-sm down"><i class="fa fa-chevron-down text-warning"></i>ลง</button>
+                    <button type="button" class="btn btn-default btn-sm up"><i class="fa fa-chevron-up text-success"></i>ขึ้น</button>
+                    <button type="button" class="btn btn-default btn-sm down"><i class="fa fa-chevron-down text-warning"></i>ลง</button>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-
 
 <div id="confrim" class="modal">
     <div class="modal-dialog">
@@ -320,84 +315,81 @@ $active = $head;
             </div>
             <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">เมนู : </label>
-                        <input type="text" id="mas_menu" class="form-control input-sm"/>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">เมนู : </label>
+                    <input type="text" id="mas_menu" class="form-control input-sm"/>
+                </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">ไอคอน : </label>
-                        <div class="row">
-                            <div class="col-lg-9 col-sm-9 col-md-9">
-                                <input type="hidden" id="icon_id"/>
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <i class="fa fa-smile-o"></i> เลือก icon
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style=" max-height: 300px; overflow: auto;">
-                                        <?php foreach ($icon->result() as $rs): ?>
-                                            <li>
-                                                <a href="javascript:select_icon('<?php echo $rs->icon_id ?>')">
-                                                  <img src="<?php echo base_url() ?>icon_menu/<?php echo $rs->icon ?>" style="height:32px;"/>
-                                                  <?php echo $rs->icon ?></a>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-3 col-md-3">
-                                <div class="btn btn-default" id="icon_show_add" style="margin-bottom:0px; padding: 5px;">
-                                    <i class="fa fa-smile-o fa-2x"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <label for="exampleInputEmail1">สีเมนู : </label>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">ไอคอน : </label>
                     <div class="row">
-                      <div class="col-sm-12 col-md-10 col-lg-10">
-                        <button type="button" class="btn" style="background:#ff8981; color:#ff8981;" onclick="set_btn_color('#ff8981','#000000')">l</button>
-                        <button type="button" class="btn" style="background:#b58aff; color:#b58aff;" onclick="set_btn_color('#b58aff','#000000')">.</button>
-                        <button type="button" class="btn" style="background:#b9f6cc; color:#b9f6cc;" onclick="set_btn_color('#b9f6cc','#000000')">.</button>
-                        <button type="button" class="btn" style="background:#fffe8d; color:#fffe8d;" onclick="set_btn_color('#fffe8d','#000000')">.</button>
-                        <button type="button" class="btn" style="background:#84feff; color:#84feff;" onclick="set_btn_color('#84feff','#000000')">.</button>
-                        <button type="button" class="btn" style="background:#f5f5f5; color:#f5f5f5;" onclick="set_btn_color('#f5f5f5','#000000')">.</button>
-
-                        <button type="button" class="btn" style="background:#ff5254; color:#ff5254;" onclick="set_btn_color('#ff5254','#FFFFFF')">.</button>
-                        <button type="button" class="btn" style="background:#7e57c2; color:#7e57c2;" onclick="set_btn_color('#7e57c2','#FFFFFF')">.</button>
-                        <button type="button" class="btn" style="background:#1de9b6; color:#1de9b6;" onclick="set_btn_color('#1de9b6','#000000')">.</button>
-                        <button type="button" class="btn" style="background:#ffeb3c; color:#ffeb3c;" onclick="set_btn_color('#ffeb3c','#000000')">.</button>
-                        <button type="button" class="btn" style="background:#05a8f3; color:#05a8f3;" onclick="set_btn_color('#05a8f3','#FFFFFF')">.</button>
-                        <button type="button" class="btn" style="background:#999999; color:#999999;" onclick="set_btn_color('#999999','#FFFFFF')">.</button>
-                  </div>
-                  <div class="col-sm-12 col-md-2 col-lg-2">
-                    <div class="btn btn-block" id="bg_color">ตัวอย่าง</div>
-                  </div>
-                  <input type="hidden" id="bgcolor"/>
-                  <input type="hidden" id="textcolor"/>
-                  </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">ประเภท : </label>
-                        <select  id="mas_status" class="form-control input-sm">
-                            <option value="">== กรุณาเลือก ==</option>
-                            <option value="0">ลิงค์ในระบบ</option>
-                            <option value="1">มีเมนูย่อย</option>
-                            <option value="2">ลิงค์ไปยังเว็บไซต์ภายนอก</option>
-                        </select><br />
-                        <div id="box_link" style="display:none;">
-                            ลิงค์ : <br />
-                            <div id="linkmenu"></div>
+                        <div class="col-lg-9 col-sm-9 col-md-9">
+                            <input type="hidden" id="icon_id"/>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="fa fa-smile-o"></i> เลือก icon
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style=" max-height: 300px; overflow: auto;">
+                                    <?php foreach ($icon->result() as $rs): ?>
+                                        <li>
+                                            <a href="javascript:select_icon('<?php echo $rs->icon_id ?>')">
+                                                <img src="<?php echo base_url() ?>icon_menu/<?php echo $rs->icon ?>" style="height:32px;"/>
+                                                <?php echo $rs->icon ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                         </div>
-
-                        <div id="box_link_out" style="display:none;">
-                            Url ลิงค์ข้างนอก : <br />
-                            <input type="text" id="link_out" class=" form-control"/>
+                        <div class="col-lg-3 col-sm-3 col-md-3">
+                            <div class="btn btn-default" id="icon_show_add" style="margin-bottom:0px; padding: 5px;">
+                                <i class="fa fa-smile-o fa-2x"></i>
+                            </div>
                         </div>
+                    </div>
+                </div>
 
+                <label for="exampleInputEmail1">สีเมนู : </label>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                        <button type="button" class="btn" style="background:#ff8981; color:#ff8981;" onclick="set_btn_color('#ff8981', '#000000')">l</button>
+                        <button type="button" class="btn" style="background:#b58aff; color:#b58aff;" onclick="set_btn_color('#b58aff', '#000000')">.</button>
+                        <button type="button" class="btn" style="background:#b9f6cc; color:#b9f6cc;" onclick="set_btn_color('#b9f6cc', '#000000')">.</button>
+                        <button type="button" class="btn" style="background:#fffe8d; color:#fffe8d;" onclick="set_btn_color('#fffe8d', '#000000')">.</button>
+                        <button type="button" class="btn" style="background:#84feff; color:#84feff;" onclick="set_btn_color('#84feff', '#000000')">.</button>
+                        <button type="button" class="btn" style="background:#f5f5f5; color:#f5f5f5;" onclick="set_btn_color('#f5f5f5', '#000000')">.</button>
+
+                        <button type="button" class="btn" style="background:#ff5254; color:#ff5254;" onclick="set_btn_color('#ff5254', '#FFFFFF')">.</button>
+                        <button type="button" class="btn" style="background:#7e57c2; color:#7e57c2;" onclick="set_btn_color('#7e57c2', '#FFFFFF')">.</button>
+                        <button type="button" class="btn" style="background:#1de9b6; color:#1de9b6;" onclick="set_btn_color('#1de9b6', '#000000')">.</button>
+                        <button type="button" class="btn" style="background:#ffeb3c; color:#ffeb3c;" onclick="set_btn_color('#ffeb3c', '#000000')">.</button>
+                        <button type="button" class="btn" style="background:#05a8f3; color:#05a8f3;" onclick="set_btn_color('#05a8f3', '#FFFFFF')">.</button>
+                        <button type="button" class="btn" style="background:#999999; color:#999999;" onclick="set_btn_color('#999999', '#FFFFFF')">.</button>
+                    </div>
+                    <div class="col-sm-12 col-md-2 col-lg-2">
+                        <div class="btn btn-block" id="bg_color">ตัวอย่าง</div>
+                    </div>
+                    <input type="hidden" id="bgcolor"/>
+                    <input type="hidden" id="textcolor"/>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">ประเภท : </label>
+                    <select  id="mas_status" class="form-control input-sm">
+                        <option value="">== กรุณาเลือก ==</option>
+                        <option value="0">ลิงค์ในระบบ</option>
+                        <option value="1">มีเมนูย่อย</option>
+                        <option value="2">ลิงค์ไปยังเว็บไซต์ภายนอก</option>
+                    </select><br />
+                    <div id="box_link" style="display:none;">
+                        ลิงค์ : <br />
+                        <div id="linkmenu"></div>
                     </div>
 
+                    <div id="box_link_out" style="display:none;">
+                        Url ลิงค์ข้างนอก : <br />
+                        <input type="text" id="link_out" class=" form-control"/>
+                    </div>
+                </div>
             </div><!-- modal body -->
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -405,9 +397,7 @@ $active = $head;
             </div>
         </div>
     </div>
-
 </div>
-
 
 <!--
   Dialog Help
@@ -420,15 +410,14 @@ $active = $head;
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 id="myModalLabel">Ex.</h4>
             </div>
-              <img src="<?= base_url() ?>images/ex-menu.png" class="img-responsive"/>
+            <img src="<?= base_url() ?>images/ex-menu.png" class="img-responsive"/>
         </div>
     </div>
 </div>
 
-
 <script type="text/javascript">
-    $(document).ready(function(){
-        $(".up,.down").click(function(){
+    $(document).ready(function () {
+        $(".up,.down").click(function () {
             var row = $(this).parents("tr:first");
             if ($(this).is(".up")) {
                 row.insertBefore(row.prev());
@@ -438,53 +427,53 @@ $active = $head;
         });
     });
 
-    function save_sort_order(){
+    function save_sort_order() {
         var table = document.getElementById('tb_mas_menu');
 
-          var rowLength = table.rows.length;
-          var a = 0;
-          for(var i=1; i<rowLength; i+=1){
+        var rowLength = table.rows.length;
+        var a = 0;
+        for (var i = 1; i < rowLength; i += 1) {
             var rows = table.rows[i];
             var level = i;
             var id = parseInt(rows.cells[1].innerText);
             //alert(level + "=>" + title);
-            var url = "<?php echo site_url('menager_menu/set_level')?>";
+            var url = "<?php echo site_url('menager_menu/set_level') ?>";
             var data = {
-              id: id,level: level
-            }
+                id: id, level: level
+            };
 
-            $.post(url,data,function(success){
-              a = (a+=1);
-              //$("#log").append(success + "<br/>");
-              if(a >= (rowLength-1)){
-                window.location.reload();
-              }
+            $.post(url, data, function (success) {
+                a = (a += 1);
+                //$("#log").append(success + "<br/>");
+                if (a >= (rowLength - 1)) {
+                    window.location.reload();
+                }
             });
 
             //your code goes here, looping over every row.
             //cells are accessed as easy
             /*
-            var cellLength = row.cells.length;
-            for(var y=0; y<cellLength; y+=1){
-              var cell = row.cells[y];
-
-              //do something with every cell here
-            }
-            */
+             var cellLength = row.cells.length;
+             for(var y=0; y<cellLength; y+=1){
+             var cell = row.cells[y];
+             
+             //do something with every cell here
+             }
+             */
         }
     }
 
-    function set_btn_color(color,text){
-      $("#bgcolor").val(color);
-      $("#textcolor").val(text);
-      var style = {
-        "background": color,
-        "color": text
-      }
-      $("#bg_color").css(style);
+    function set_btn_color(color, text) {
+        $("#bgcolor").val(color);
+        $("#textcolor").val(text);
+        var style = {
+            "background": color,
+            "color": text
+        };
+        $("#bg_color").css(style);
     }
 
-    function help(){
-      $("#help").modal();
+    function help() {
+        $("#help").modal();
     }
 </script>

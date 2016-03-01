@@ -74,7 +74,6 @@
 <div class="row">
     <?php
     foreach ($menu_admin_type->result() as $rs):
-      //if($rs->typelink == '0'){
       ?>
         <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" style=" margin-bottom: 10px;">
             <a href="<?= site_url($rs->admin_menu_link) . '/' . $rs->admin_menu_id . '/' . $rs->admin_menu_name ?>" style=" text-decoration: none;">
@@ -86,7 +85,6 @@
                 </div>
             </a>
         </div>
-        <?//php } ?>
     <?php endforeach; ?>
 
     <!--
@@ -125,7 +123,6 @@
           <button type="button" class="btn btn-success" onclick="Addmenu();">
               <i class="fa fa-plus"></i> เพิ่มระบบไฟล์ Download
           </button>
-
       <?php } ?>
       </h3>
     </div>
@@ -156,8 +153,6 @@
       </div>
     </div><!-- End Panel-Body-->
 </div><!--./End Panel -->
-
-
 
 
 <!---
@@ -209,6 +204,5 @@
             });
 
           });
-
   }
 </script>

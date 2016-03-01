@@ -14,8 +14,6 @@
 <script src="<?php echo base_url() ?>assets/sweet-alert/sweetalert.min.js" type="text/javascript"></script>
 
 <div class="container">
-
-
     <div class="modal fade" tabindex="-1" role="dialog" id="dialog-login" data-backdrop="static" style="margin-top:10%;">
         <div class="modal-dialog">
             <div class="modal-content" style="box-shadow:none;">

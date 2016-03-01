@@ -1,4 +1,3 @@
-
 <div class="container">
     <?php
     $this->load->library('takmoph_libraries');
@@ -11,7 +10,6 @@
 
     $active = $head;
     ?>
-
     <div class="row" style=" margin: 0px; padding: 0px;">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-left: 0px;">
             <h3 id="head_submenu">

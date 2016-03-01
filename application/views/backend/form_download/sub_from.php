@@ -87,10 +87,7 @@ echo $model->breadcrumb($list, $active);
 ?>
 
 <h3><i class="fa fa-file-text-o"></i> <?= $head ?></h3>
-
 <hr/>
-
-
 <a href="#" id="c_insert"><div class="btn btn-default" style=" float:right;"><i class=" glyphicon glyphicon-plus"></i> เพิ่มเมนู</div></a>
 
 <table width="100%" id="tb_mas_menu" class="table">
