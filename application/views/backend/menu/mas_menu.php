@@ -208,7 +208,6 @@ $active = $head;
             <th>สี</th>
             <th>ไอคอน</th>
             <th align="left">ลิงค์</th>
-            <th align="center">ลำดับ</th>
             <th></th>
             <th style="text-align:right;">
                 <button type="button" class="btn btn-default btn-sm" onclick="save_sort_order()"><i class="fa fa-save text-primary"></i> บันทึก</button>
@@ -247,10 +246,7 @@ $active = $head;
                     } else {
                         echo $rs->link_out;
                     }
-                    ?></td>
-                <td>
-                    <input type="text" id="lever" value="<?= $rs->level ?>" style="width:30px;" class=" form-control input-sm" readonly="readonly"
-                           onclick="set_level('<?= $rs->id ?>', '<?= $rs->level ?>');"/>
+                    ?>
                 </td>
                 <td>
                     <div class="btn-group" style=" text-align:left;">

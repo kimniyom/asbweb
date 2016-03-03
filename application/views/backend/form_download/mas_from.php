@@ -75,6 +75,16 @@
         var mas_from = $("#mas_from").val();
         var from_status = $("#from_status").val();
         var data = {mas_from: mas_from, from_status: from_status};
+        if(mas_from == ''){
+            $("#mas_from").focus();
+            return false;
+        }
+        
+        if(from_status == ''){
+            $("#from_status").focus();
+            return false;
+        }
+        
         $.post(url, data,
                 function (datas) {
                     var id = datas.id;

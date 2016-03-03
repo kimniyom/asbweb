@@ -31,7 +31,7 @@ class counter_model extends CI_Model {
         $this->db->where("date","$date");
         $query = $this->db->get();
         $row = $query->row();
-        if($row->ip == ''){
+        if(empty($row)){
             $columns = array("ip" => $ip,"date" => $date);
             $this->db->insert("counter",$columns);
         }

@@ -24,6 +24,10 @@
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/models/menu_model.php</file>
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/views/admin/show_dengue.php</file>
         </group>
-        <group name="yii"/>
+        <group name="yii">
+            <file>file:/Applications/MAMP/htdocs/asbweb/assets/card-css/card-css.css</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/home_admin.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template_admin.php</file>
+        </group>
     </open-files>
 </project-private>
