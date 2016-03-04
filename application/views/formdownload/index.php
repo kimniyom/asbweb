@@ -124,52 +124,46 @@
 <?php
 $this->load->library('takmoph_libraries');
 ?>
-<div class=" container">
-    <?php
-    $model = new takmoph_libraries();
-    /*
-      $list = array(
-      array('url' => '', 'label' => 'menu1'),
-      array('url' => '', 'label' => 'menu2')
-      );
-     * 
-     */
-    $active = $head;
-    $list = "";
-    echo $model->breadcrumb($list, $active);
-    ?>
-    <h3><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
 
-    <!-- Contenedor -->
-    <ul id="accordion" class="accordion">
-        <?php foreach ($catergory->result() as $rs): ?>
-            <li>
-                <div class="link"><i class="fa fa-file-text-o"></i><?= $rs->mas_from ?><i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <?php if ($rs->from_status == '0') { ?>
-                        <li>
-                            <a href="<?= base_url() ?>file_download/<?= $rs->file ?>" target="_blank"><i class="icon-share-alt"></i>
-                                <?= $rs->mas_from ?></a>
-                        </li>
-                    <?php } ?>
-                    <?php
-                    $sub_from = $this->tak->get_sub_from($rs->id);
-                    foreach ($sub_from->result() as $data):
-                        ?>
-                        <li><a href="<?= base_url() ?>file_download/<?= $data->file ?>" target="_blank"><i class="icon-share-alt"></i>
-                                <?= $data->sub_name ?></a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+<?php
+$model = new takmoph_libraries();
+/*
+  $list = array(
+  array('url' => '', 'label' => 'menu1'),
+  array('url' => '', 'label' => 'menu2')
+  );
+ * 
+ */
+$active = $head;
+$list = "";
+echo $model->breadcrumb($list, $active);
+?>
+<h3><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
 
-
-</div>
-
-
-
+<!-- Contenedor -->
+<ul id="accordion" class="accordion">
+    <?php foreach ($catergory->result() as $rs): ?>
+        <li>
+            <div class="link"><i class="fa fa-file-text-o"></i><?= $rs->mas_from ?><i class="fa fa-chevron-down"></i></div>
+            <ul class="submenu">
+                <?php if ($rs->from_status == '0') { ?>
+                    <li>
+                        <a href="<?= base_url() ?>file_download/<?= $rs->file ?>" target="_blank"><i class="icon-share-alt"></i>
+                            <?= $rs->mas_from ?></a>
+                    </li>
+                <?php } ?>
+                <?php
+                $sub_from = $this->tak->get_sub_from($rs->id);
+                foreach ($sub_from->result() as $data):
+                    ?>
+                    <li><a href="<?= base_url() ?>file_download/<?= $data->file ?>" target="_blank"><i class="icon-share-alt"></i>
+                            <?= $data->sub_name ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endforeach; ?>
+</ul>
 
 <script>
     $(function () {

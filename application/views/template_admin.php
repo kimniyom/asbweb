@@ -47,7 +47,9 @@
         <!-- Chart -->
         <script src="<?php echo base_url() ?>assets/Highcharts-4.2.3/js/highcharts.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>assets/Highcharts-4.2.3/js/themes/gray.js" type="text/javascript"></script>
-
+        
+        <!-- images hover effect -->
+        <link href="<?php echo base_url() ?>themes/2016/css/images-hover-effect.css" rel="stylesheet" type="text/css" />
         <?php
         $this->load->model('menubar_model', 'menu');
         $model = new menubar_model();

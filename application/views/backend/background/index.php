@@ -5,7 +5,7 @@
             'buttonText': 'กรุณาเลือกรูปภาพ ...',
             'auto': true, //เปิดใช้การอัพโหลดแบบอัติโนมัติ
             'swf': '<?= base_url() ?>lib/images/uploadify.swf', //โฟเดอร์ที่เก็บไฟล์ปุ่มอัพโหลด
-            'uploader': '<?= site_url('backend/menubar/upload_logo/') ?>', //เมื่อ submit แล้วให้ action ไปที่ไฟล์ไหน
+            'uploader': '<?= site_url('backend/background/upload/') ?>', //เมื่อ submit แล้วให้ action ไปที่ไฟล์ไหน
             'fileSizeLimit': '2MB', //อัพโหลดได้ครั้งละไม่เกิน 1024kb
             //'width': '350',
             //'height': '40',
@@ -13,7 +13,7 @@
             'multi': false, //เปิดใช้งานการอัพโหลดแบบหลายไฟล์ในครั้งเดียว
             'queueSizeLimit': 1, //อัพโหลดได้ครั้งละ 5 ไฟล์
             'onUploadComplete': function (success) { //เมื่ออัพโหลดเสร็จแล้วให้เรียกใช้งาน function load()
-                window.location.reload();
+                get_background();
             }
         });
     });
@@ -60,5 +60,21 @@ $active = $head;
     </div>
 </form><br />
 
-<label>ภาพพื้นหลัง</label><br/>
-<img src="<?php echo base_url()?>upload_images/logo/<?php echo $style->logo ?>" class="img-responsive" style="max-width:200px;"/>
+<h4>
+    <i class="fa fa-image"></i>
+    ภาพพื้นหลัง
+</h4>
+<hr/>
+
+<div id="bg-web"></div>
+
+<script>
+    get_background();
+    function get_background() {
+        var url = "<?php echo site_url('backend/background/page') ?>";
+        var data = {};
+        $.post(url, data, function (html) {
+            $("#bg-web").html(html);
+        });
+    }
+</script>

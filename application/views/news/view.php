@@ -2,7 +2,6 @@
     #im-resize{ width: 85px; height: 48px; margin-bottom: 5px;}
 </style>
 
-<body>
   <script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
@@ -12,7 +11,6 @@
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 
-<div class="container">
 
     <?php
     $this->load->library('takmoph_libraries');
@@ -170,7 +168,6 @@
             <?php endforeach; ?>
         </div>
     </div>
-</div>
 
 
 <script type="text/javascript">
@@ -192,4 +189,3 @@
         });
     });
 </script>
-</body>

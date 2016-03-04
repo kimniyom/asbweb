@@ -25,9 +25,11 @@
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/views/admin/show_dengue.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/asbweb/assets/card-css/card-css.css</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/home_admin.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template_admin.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/myhome.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/homepage.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/themes/2016/css/system.css</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/site.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template2015.php</file>
         </group>
     </open-files>
 </project-private>

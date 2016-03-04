@@ -1,6 +1,4 @@
-<div class="container">
-
-    <?php
+ <?php
     $this->load->library('takmoph_libraries');
     $model = new takmoph_libraries();
     /*
@@ -71,7 +69,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-</div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#tb_submenu").dataTable();

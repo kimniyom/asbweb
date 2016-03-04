@@ -1,6 +1,4 @@
-<!-- HTML code from Bootply.com editor -->
-<!--main-->
-<div class="container">
+
     <?php
     $this->load->library('takmoph_libraries');
     $model = new takmoph_libraries();
@@ -50,4 +48,3 @@
     <div style="text-align:center;">
       <?php echo $s_pagination ?>
     </div>
-</div>

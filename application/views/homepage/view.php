@@ -1,4 +1,4 @@
-<div class="container">
+
     <?php
     $this->load->library('takmoph_libraries');
     $model = new takmoph_libraries();
@@ -52,7 +52,6 @@
         <i class="fa fa-clock-o text-warning"></i> <?php echo $model->thaidate($result->create_date) ?>
     </div>
     <br/><br/>
-</div>
 
 <script type="text/javascript">
     $(document).ready(function () {

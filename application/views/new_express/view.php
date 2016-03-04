@@ -1,4 +1,4 @@
-<div class="container">
+
     <?php
     $this->load->library('takmoph_libraries');
     $lib = new takmoph_libraries();
@@ -26,4 +26,3 @@
     <hr/>
     <div class="pull-right" style=" margin-right: 15px;"><i class="fa fa-calendar"></i> <?php echo $model->create_date; ?></div>
     <br/><br/>
-</div>

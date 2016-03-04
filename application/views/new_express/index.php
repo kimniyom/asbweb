@@ -1,4 +1,4 @@
-<div class="container">
+
     <?php
     $this->load->library('takmoph_libraries');
     $lib = new takmoph_libraries();
@@ -44,7 +44,6 @@
         </tbody>
     </table>
 
-</div>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#tb_news_express").dataTable();
