@@ -7,21 +7,22 @@
         //Use Model,libraries
         $this->load->library('takmoph_libraries');
         $this->load->driver('cache');
-        $this->load->model('newexpress_model');
-        $this->load->model('banner_model');
-        $this->load->model('menubar_model');
-        $this->load->model("menu_model");
-        $this->load->model('homepage_model');
-        $this->load->model('sub_homepage_model');
-        $this->load->model('news_model');
-        $this->load->model('photo_model');
-
+        /*
+          $this->load->model('newexpress_model');
+          $this->load->model('banner_model');
+          $this->load->model('menubar_model');
+          $this->load->model("menu_model");
+          $this->load->model('homepage_model');
+          $this->load->model('sub_homepage_model');
+          $this->load->model('news_model');
+          $this->load->model('photo_model');
+         */
         $barmodel = new menubar_model();
-        $style = $barmodel->get_style();
-        $navbar = $barmodel->get_navbarmenu_all();
         $lib = new takmoph_libraries();
         $newsModel = new news_model();
         $photoModel = new photo_model();
+        $style = $barmodel->get_style();
+        $navbar = $barmodel->get_navbarmenu_all();
         ?>
 
         <link rel="shortcut icon" href="<?php echo base_url() ?>upload_images/logo/<?php echo $style->logo ?>">
@@ -50,7 +51,6 @@
         <script src="<?php echo base_url() ?>themes/2016/js/bootstrap.js" type="text/javascript"></script>
         <link href="<?php echo base_url() ?>themes/2016/css/half-slider.css" rel="stylesheet" type="text/css" />
 
-
         <!-- Icon aware-some -->
         <link href="<?php echo base_url() ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 
@@ -58,11 +58,9 @@
         <script src="<?php echo base_url() ?>js/library/configweb.js" type="text/javascript"></script>
 
         <!-- Datatable -->
-
         <link rel="stylesheet" href="<?= base_url() ?>assets/DataTables-1.10.10/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <script src="<?= base_url() ?>assets/DataTables-1.10.10/media/js/jquery.dataTables.js" type="text/javascript"></script>
         <script src="<?= base_url() ?>assets/DataTables-1.10.10/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
-
 
         <!-- Assets -->
         <link href="<?php echo base_url() ?>assets/card-css/card-css.css" rel="stylesheet" type="text/css" />
@@ -92,7 +90,6 @@
                     <a href="<?php echo site_url('users/login') ?>" class="pull-right"
                        style="color: <?php echo $style->color_text ?>;"><i class="fa fa-sign-in"></i> Sign In</a>
                 </div>
-
             </div>
 
             <div class="container">
