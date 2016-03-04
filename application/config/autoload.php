@@ -123,7 +123,8 @@ $autoload['model'] = array(
     'homepage_model',
     'sub_homepage_model',
     'news_model',
-    'photo_model'
+    'photo_model',
+    'template_model'
 );
 
 

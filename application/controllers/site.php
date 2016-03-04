@@ -9,6 +9,7 @@ class site extends CI_Controller {
      *  Date 27/05/2556 | Time 22.26.00
      *
      */
+
     public function __construct() {
         parent::__construct();
         $this->load->model('takmoph_model', 'tak');
@@ -20,8 +21,6 @@ class site extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('takmoph_libraries');
         $this->load->library('session');
-
-
     }
 
     public function output($deta = '', $page = '', $head = '') {
@@ -29,19 +28,21 @@ class site extends CI_Controller {
         $data['page'] = $page;
         $data['head'] = $head;
         //$this->load->view('template/default', $data);
-        $this->load->view('template2015', $data);
+        
+        $this->load->view($this->session->userdata('template'), $data);
     }
 
     public function index() {
+        $this->template_model->themes();//set themes
+        
         $ip = $this->input->ip_address();
         $date = date("Y-m-d");
-        $this->counter->get_user($ip,$date);
-        
+        $this->counter->get_user($ip, $date);
+
         $head = "";
         $page = "myhome";
         $this->output('', $page, $head);
     }
-
 
     public function logout() {
         $this->session->sess_destroy();
@@ -56,20 +57,19 @@ class site extends CI_Controller {
         $this->output($data, $page, $head);
     }
 
-    public function set_desktop(){
+    public function set_desktop() {
         //$this->input->post->('width');
         $width = $this->input->post('width');
-        $this->session->set_userdata("width",$width);
+        $this->session->set_userdata("width", $width);
     }
 
-    public function page($Id = null){
+    public function page($Id = null) {
         $PageId = $this->takmoph_libraries->decode($Id);
 
         $data['page'] = $this->menu->get_page($PageId);
         $head = $data['page']->title;
         $page = "menubar/view";
-        $this->output($data,$page,$head);
-
+        $this->output($data, $page, $head);
     }
 
 }
