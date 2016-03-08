@@ -22,7 +22,8 @@ class menu extends CI_Controller {
         $data['detail'] = $deta;
         $data['page'] = $page;
         $data['head'] = $head;
-        $this->load->view('template2015', $data);
+        $template = $this->template_model->get_template();
+        $this->load->view($template['template'], $data);
     }
 
     public function get_menu() {

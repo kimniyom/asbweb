@@ -38,19 +38,54 @@ class background_model extends CI_Model {
         return $this->db->query($sql);
     }
 
+    public function get_bg_color() {
+        $this->db->select("*");
+        $this->db->from("background_color");
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function background_active() {
         $sql = "SELECT background
                 FROM background 
                 WHERE active = '1' ";
         $rs = $this->db->query($sql)->row();
-        $img = base_url()."upload_images/bg/".$rs->background;
-        $bg = "
+
+        if (!empty($rs)) {
+            $img = base_url() . "upload_images/bg/" . $rs->background;
+            $bg = "
             background: url($img) no-repeat center center fixed; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;";
+        } else {
+            $sql = "SELECT color
+                FROM background_color 
+                WHERE active = '1' ";
+            $rs = $this->db->query($sql)->row();
+            $color = $rs->color;
+            $bg = "background:$color;";
+        }
         return $bg;
+    }
+
+    public function background_active_backend() {
+        $sql = "SELECT background
+                FROM background 
+                WHERE active = '1' ";
+        $rs = $this->db->query($sql)->row();
+
+        if (!empty($rs)) {
+            $color = $rs->background;
+        } else {
+            $sql = "SELECT color
+                FROM background_color 
+                WHERE active = '1' ";
+            $rs = $this->db->query($sql)->row();
+            $color = $rs->color;
+        }
+        return $color;
     }
 
 }

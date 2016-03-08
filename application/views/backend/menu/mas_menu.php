@@ -186,7 +186,7 @@ $active = $head;
         <h3 id="head_submenu"><i class="fa fa-list-alt"></i> <?php echo $head ?></h3>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-right: 0px;">
-        <?php echo $model->breadcrumb($list, $active); ?>
+        <?php echo $model->breadcrumb_backend($list, $active); ?>
     </div>
 </div>
 

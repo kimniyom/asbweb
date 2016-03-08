@@ -10,6 +10,7 @@ class template extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->library('unzip');
+        $this->load->helper('file');
     }
 
     public function output($deta = '', $page = '', $head = '') {
@@ -28,7 +29,8 @@ class template extends CI_Controller {
 
     public function set_template() {
         $themes = $this->input->post('template');
-        $this->session->set_userdata("template", 'themes/'.$themes.'/index');
+        $this->session->set_userdata("pathThemes", "themes/" . $themes);
+        $this->session->set_userdata("template", 'template/' . $themes . '/index');
     }
 
     public function page() {
@@ -58,24 +60,35 @@ class template extends CI_Controller {
                 $fileTypes = array('zip', 'rar'); // File extensions
                 $fileParts = pathinfo($_FILES['Filedata']['name']);
                 if (in_array($fileParts['extension'], $fileTypes)) {
-                    //$file_string = addslashes(fread(fopen($thefile[tmp_name], "r"), $thefile[size]));
-
-                    if (!is_dir($targetFolder . '/' . $nof)) { //create the folder if it's not already exists
-                        $data = array(
-                            'template' => $nof
-                        );
-                        $this->db->insert('template', $data);
-
+                    if (!is_dir($targetFolder . '/' . $nof)) {
+                        /*
+                          $data = array(
+                          'template' => $nof
+                          );
+                          $this->db->insert('template', $data);
+                         */
                         move_uploaded_file($tempFile, $targetFile);
-
-                        // Optional: Only take out these files, anything else is ignored
                         //$this->unzip->allow(array('css', 'js', 'png', 'gif', 'jpeg', 'jpg', 'tpl', 'html', 'swf'));
-                        // Give it one parameter and it will extract to the same folder
                         $this->unzip->extract($targetFolder . '/' . $Name);
                         unlink($targetFolder . '/' . $Name);
-                        // or specify a destination directory
-                        //$this->unzip->extract('uploads/my_archive.zip', '/path/to/directory/');
 
+
+                        //$this->unzip->extract('uploads/my_archive.zip', '/path/to/directory/');
+                        //เช็คว่ามีไฟล์ Index ใน Folder ไหม 
+                        if (file_exists($targetFolder . '/' . $nof . '/index.php')) {
+                            //สร้าง Folder ใน views
+                            $pathTemplate = "application/views/template/" . $nof;
+                            if (!is_dir($pathTemplate)) {//เช็คว่ามีชื่อโฟล์เดอร์นี้หรือไม่
+                                mkdir($pathTemplate, 0777, true);
+                                //เอาไฟล์ Index เข้าไปใน Folder
+
+                                copy($targetFolder . '/' . $nof . '/index.php', $pathTemplate . '/index.php');
+                            } else {
+                                echo "error";
+                            }
+                        } else {
+                            echo "error";
+                        }
                         echo $Name;
                     } else {
                         echo "error";

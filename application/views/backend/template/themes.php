@@ -9,7 +9,7 @@
                 <div class="container-card" style="height:200px;">
                     <figure>
                         <div class="img-wrapper">
-                            <img src="<?php echo base_url() ?>template/<?php echo $rs->template ?>/images/ex.jpg" class="img-responsive img-polaroid" style="height:200px;"/>
+                            <img src="<?php echo base_url() ?>themes/<?php echo $rs->template ?>/images/ex.jpg" class="img-responsive img-polaroid" style="height:200px;"/>
                         </div>
                     </figure>
                     <div id="btn-card">

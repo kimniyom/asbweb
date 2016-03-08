@@ -16,7 +16,7 @@ if ($text > 50) {
 
 $active = $h;
 //$list = "";
-echo $lib->breadcrumb($list, $active);
+echo $lib->breadcrumb_backend($list, $active);
 ?>
 <h3><i class="fa fa-newspaper-o"></i> ประกาศด่วน</h3>
 <hr/>

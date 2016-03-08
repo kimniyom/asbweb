@@ -24,45 +24,44 @@
         </script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                $("#from_").submit(function () {
-                    //var _detail = $("#_detail").Editor("getText");
-                    var _detail = CKEDITOR.instances._detail.getData();
 
-                    if (_detail == "") {
-                        alert("กรอกรายละเอียด ...?");
-                        return false;
+            function edit_news() {
+                //var _detail = $("#_detail").Editor("getText");
+                var _detail = CKEDITOR.instances._detail.getData();
+
+                if (_detail == "") {
+                    alert("กรอกรายละเอียด ...?");
+                    return false;
+                }
+                var data = {
+                    _new_id: $("#_new_id").val(),
+                    _title: $("#_title").val(),
+                    _detail: _detail
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "<?= site_url('backend/news/edit_news') ?>",
+                    data: data,
+                    success: function () {
+                        window.location.reload();
                     }
-                    var data = {
-                        _new_id: $("#_new_id").val(),
-                        _title: $("#_title").val(),
-                        _detail: _detail
-                    };
-
-                    $.ajax({
-                        type: "POST",
-                        url: "<?= site_url('backend/news/edit_news') ?>",
-                        data: data,
-                        success: function () {
-                            window.location.reload();
-                        }
-                    });
                 });
-            });
+            }
+
         </script>
     </head>
 
     <body>
 
-        <form id="from_" name="from_">
-            <input type="hidden" id="_new_id" name="_new_id" value="<?= $news->id ?>"/>
-            <label>หัวข้อข่าว</label>
-            <input type="text" id="_title" name="_title" style="width:98%;" class="form-control input-mini" required="required" value="<?= $news->titel ?>"/>
-            <label>รายละเอียด</label>
-            <textarea  id="_detail" name="_detail" rows="5" class="form-control"><?= $news->detail ?></textarea><br/>
-            <input type="submit" class="btn btn-success" value="บันทึกข้อมูล" />
-            <input type="reset" class="btn btn-danger" value="ยกเลิก" />
-        </form>
+
+        <input type="hidden" id="_new_id" name="_new_id" value="<?= $news->id ?>"/>
+        <label>หัวข้อข่าว</label>
+        <input type="text" id="_title" name="_title" style="width:98%;" class="form-control input-mini" required="required" value="<?= $news->titel ?>"/>
+        <label>รายละเอียด</label>
+        <textarea  id="_detail" name="_detail" rows="5" class="form-control"><?= $news->detail ?></textarea><br/>
+        <input type="button" class="btn btn-success" value="บันทึกข้อมูล" onclick="edit_news()"/>
+        <input type="reset" class="btn btn-danger" value="ยกเลิก" />
 
     </body>
 </html>

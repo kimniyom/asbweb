@@ -53,37 +53,37 @@
             }
         });
         /*
-        new $.fn.dataTable.FixedHeader(table, {
-            "offsetTop": 50
-        });
-        */
+         new $.fn.dataTable.FixedHeader(table, {
+         "offsetTop": 50
+         });
+         */
     });
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#from").submit(function () {
-            //var detail = $("#detailnews").Editor("getText");
-            var detail = CKEDITOR.instances.detailnews.getData();
-            if (detail == "") {
-                alert("กรอกรายละเอียด ...?");
-                return false;
+
+    function add_new() {
+        //var detail = $("#detailnews").Editor("getText");
+        var detail = CKEDITOR.instances.detailnews.getData();
+        if (detail == "") {
+            alert("กรอกรายละเอียด ...?");
+            return false;
+        }
+        var data = {
+            new_id: $("#new_id").val(),
+            title: $("#title").val(),
+            detail: detail
+        };
+        $.ajax({
+            type: "POST",
+            url: "<?= site_url('backend/news/save_news') ?>",
+            data: data,
+            success: function () {
+                window.location.reload();
             }
-            var data = {
-                new_id: $("#new_id").val(),
-                title: $("#title").val(),
-                detail: detail
-            };
-            $.ajax({
-                type: "POST",
-                url: "<?= site_url('backend/news/save_news') ?>",
-                data: data,
-                success: function () {
-                    window.location.reload();
-                }
-            });
         });
-    });
+    }
+
 
     function set_from(id) {
         var url = "<?php echo site_url('backend/news/from_edit_news') ?>";
@@ -128,7 +128,7 @@ $list = array(
 );
 
 $active = $head;
-echo $model->breadcrumb($list, $active);
+echo $model->breadcrumb_backend($list, $active);
 ?>
 
 <br/>
@@ -230,7 +230,7 @@ echo $model->breadcrumb($list, $active);
                     <textarea id="detailnews" name="detailnews" class="form-control" rows="3"></textarea> 
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-success" value="บันทึกข้อมูล" />
+                    <input type="button" class="btn btn-success" value="บันทึกข้อมูล" onclick="add_new()"/>
                     <input type="reset" class="btn btn-danger" value="ยกเลิก" />
                 </div>
             </form>

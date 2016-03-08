@@ -55,11 +55,7 @@
                 swal({title: "Success", text: "ลบข้อมูลแล้ว ...", type: "success",
                     showCancelButton: false,
                     loseOnConfirm: true,
-<<<<<<< HEAD
-                    showLoaderOnConfirm: false },
-=======
-                    showLoaderOnConfirm: false, },
->>>>>>> origin/master
+                    showLoaderOnConfirm: false},
                         function () {
                             //swal("Success","แก้ไขข้อมูลแล้ว ...","success");
                             loaddata();

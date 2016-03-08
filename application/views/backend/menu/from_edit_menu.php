@@ -71,7 +71,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style=" max-height: 300px; overflow: auto;">
                         <?php foreach ($icon->result() as $rs): ?>
                             <li>
-                                <a href="javascript:_select_icon('<?php echo $rs->icon_id ?>')"><img src="<?php echo base_url() ?>icon_menu/<?php echo $rs->icon ?>"/><?php echo $rs->icon ?></a>
+                                <a href="javascript:_select_icon('<?php echo $rs->icon_id ?>')"><img src="<?php echo base_url() ?>icon_menu/<?php echo $rs->icon ?>" style="height:32px;"/><?php echo $rs->icon ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>

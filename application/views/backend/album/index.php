@@ -10,7 +10,7 @@ $list = array(
 
 $active = $head;
 //$list = "";
-echo $model->breadcrumb($list, $active);
+echo $model->breadcrumb_backend($list, $active);
 ?>
 
 <h3 id="head_submenu"><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>

@@ -43,7 +43,7 @@ $list = array(
 );
 
 $active = $head;
-echo $model->breadcrumb($list, $active);
+echo $model->breadcrumb_backend($list, $active);
 ?>
 
 <br/>

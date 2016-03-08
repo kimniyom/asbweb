@@ -62,7 +62,7 @@ $list = array(
 );
 
 $active = $head;
-echo $model->breadcrumb($list, $active);
+echo $model->breadcrumb_backend($list, $active);
 ?>
 <h3><i class="fa fa-image"></i> <?= $head ?></h3>
 <h4 class="text-success">:: <?php echo $news->titel; ?></h4>

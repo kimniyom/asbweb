@@ -56,7 +56,8 @@
 
         <!-- Jquery Library -->
         <script src="<?php echo base_url() ?>js/library/configweb.js" type="text/javascript"></script>
-
+        <script src="<?php echo base_url() ?>themes/2016/js/system.js" type="text/javascript"></script>
+        
         <!-- Datatable -->
         <link rel="stylesheet" href="<?= base_url() ?>assets/DataTables-1.10.10/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <script src="<?= base_url() ?>assets/DataTables-1.10.10/media/js/jquery.dataTables.js" type="text/javascript"></script>

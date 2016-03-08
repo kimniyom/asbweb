@@ -16,7 +16,7 @@ $style = $this->menubar_model->get_style();
  ########### HomePage ################
 -->
 <div class="box_homepage">
-    <div class="container">
+    <div class="container" id="set_homepage">
         <div id="homepage"></div>
     </div>
 </div>
@@ -28,6 +28,7 @@ $style = $this->menubar_model->get_style();
         $("#menu_and_news").show();
         $("#main-album").show();
         $("#main-menu-system").show();
+        $(".BL").show();
     });
 
     function loadhomepage() {

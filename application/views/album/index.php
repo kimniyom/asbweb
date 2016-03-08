@@ -2,7 +2,7 @@
   $this->load->model('photo_model','photo');
 ?>
 <!--main-->
-  <div class="container">
+<div class="container" id="album-views">
       <?php
       $this->load->library('takmoph_libraries');
       $model = new takmoph_libraries();
@@ -27,7 +27,7 @@
             $images = $this->photo->get_first_album($albums->id);
             ?>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="container-card" style="height:350px;">
+                <div class="container-card album-all" style="height:350px;">
                     <div class="img-wrapper">
                         <?php if (!empty($images)) { ?>
                             <img src="<?php echo base_url() ?>upload_images/photo/<?php echo $images; ?>" class="img-responsive img-polaroid" style="height:200px;"/>

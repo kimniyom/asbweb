@@ -20,18 +20,19 @@ class template_model extends CI_Model {
         $query = $this->db->query($sql)->row();
 
         if (!empty($query->template)) {
-            return 'themes/'.$query->template .'/index';
+            //$this->session->set_userdata("pathThemes", "themes/" . $query->template);
+
+            return array(
+                "template" => 'template/' . $query->template . '/index',
+                "path" => 'themes/' . $query->template
+            );
         } else {
-            return "template2015";
+            return array("template" => "template2015");
         }
     }
 
     public function themes() {
-        $template = $this->session->userdata('template');
-        if ($template == '') {
-            $themes = $this->get_template();
-            $this->session->set_userdata('template', $themes);
-        }
+        //$themes = $this->get_template();
     }
 
     public function get_template_setup() {

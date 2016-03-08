@@ -12,6 +12,28 @@ class takmoph_libraries {
         $url = "";
         $label = "";
 
+        $str = '<ol class="breadcrumb" style="background: none; margin-bottom:0px; text-align:right; position:absolute; top:0px; right:0px;">';
+        $str .= '<li><i class="fa fa-home"></i> <a href="' . site_url('') . '">หน้าแรก</a></li>';
+        if (!empty($list)) {
+            foreach ($list as $result):
+                $url = site_url($result['url']);
+                $label = $result['label'];
+                $str .= $icon;
+                $str .= '<li><a href = "' . $url . '">' . $label . '</a></li >';
+            endforeach;
+        }
+        $str .= $icon;
+        $str .='<li class="active">' . $active . '</li>';
+        $str .= '</ol>';
+
+        return $str;
+    }
+    
+    function breadcrumb_backend($list = null, $active = null) {
+        $icon = ' <i class="fa fa-angle-double-right"></i> ';
+        $url = "";
+        $label = "";
+
         $str = '<ol class="breadcrumb pull-right" style="background: none; margin-bottom:0px;">';
         $str .= '<li><i class="fa fa-home"></i> <a href="' . site_url('') . '">หน้าแรก</a></li>';
         if (!empty($list)) {

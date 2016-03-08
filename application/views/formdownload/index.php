@@ -138,8 +138,8 @@ $active = $head;
 $list = "";
 echo $model->breadcrumb($list, $active);
 ?>
-<h3><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
-
+<h3 id=" head_submenu"><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
+<hr id="hr"/>
 <!-- Contenedor -->
 <ul id="accordion" class="accordion">
     <?php foreach ($catergory->result() as $rs): ?>

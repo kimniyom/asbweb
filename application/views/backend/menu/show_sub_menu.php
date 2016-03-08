@@ -80,7 +80,7 @@ $list = array(
 );
 
 $active = $head;
-echo $model->breadcrumb($list, $active);
+echo $model->breadcrumb_backend($list, $active);
 ?>
 
 <h3><i class="fa fa-sitemap"></i> <?= $head ?></h3>

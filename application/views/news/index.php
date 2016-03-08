@@ -1,5 +1,4 @@
-
-    <?php
+<?php
     $this->load->library('takmoph_libraries');
     $model = new takmoph_libraries();
     /*
@@ -13,7 +12,7 @@
     $list = "";
     echo $model->breadcrumb($list, $active);
     ?>
-    <h3 id="head_submenu"><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
+    <h3 id="head_submenu"><i class="fa fa-newspaper-o fa-2x"></i> <?php echo $head ?></h3>
     <hr id="hr"/>
     <div class="row">
         <?php
@@ -22,13 +21,13 @@
             $images = $this->news->get_first_images_news($news->id);
             ?>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="container-card">
+                <div class="container-card set-views-card box-all">
                     <div class="img-wrapper">
                         <?php if (!empty($images)) { ?>
-                            <img src="<?php echo base_url() ?>upload_images/news/<?php echo $images; ?>" class="img-responsive img-polaroid" style="height:250px;"/>
+                            <img src="<?php echo base_url() ?>upload_images/news/<?php echo $images; ?>" class="img-responsive img-polaroid img-news-all" style="height:250px;"/>
                         <?php } else { ?>
                           <center>
-                            <img src="<?php echo base_url() ?>images/News-Mic-iPhone-icon.jpg" class="img-responsive img_news"/>
+                            <img src="<?php echo base_url() ?>images/News-Mic-iPhone-icon.jpg" class="img-responsive img_news img-news-all"/>
                           </center>
                         <?php } ?>
                     </div>

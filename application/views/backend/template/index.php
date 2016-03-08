@@ -42,7 +42,7 @@ $active = $head;
         <h3 id="head_submenu"><i class="fa fa-magic"></i> <?php echo $head ?></h3>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-right: 0px;">
-        <?php echo $lib->breadcrumb($list, $active); ?>
+        <?php echo $lib->breadcrumb_backend($list, $active); ?>
     </div>
 </div>
 
@@ -72,11 +72,11 @@ $active = $head;
 </h4>
 <hr/>
 
-<div id="theme-template"></div>
+<div id="themes-template"></div>
 
 <script>
-    //get_background();
-    function get_background() {
+    get_template();
+    function get_template() {
         var url = "<?php echo site_url('backend/template/page') ?>";
         var data = {};
         $.post(url, data, function (html) {

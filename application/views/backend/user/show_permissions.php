@@ -100,7 +100,7 @@ $list = array(
 );
 
 $active = "แก้ไข";
-echo $model->breadcrumb($list, $active);
+echo $model->breadcrumb_backend($list, $active);
 ?>
 
 <br/>

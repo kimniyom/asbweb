@@ -28,13 +28,13 @@ class site extends CI_Controller {
         $data['page'] = $page;
         $data['head'] = $head;
         //$this->load->view('template/default', $data);
-        
-        $this->load->view($this->session->userdata('template'), $data);
+        $template = $this->template_model->get_template();
+        $this->load->view($template['template'], $data);
     }
 
     public function index() {
-        $this->template_model->themes();//set themes
-        
+        $this->template_model->themes(); //set themes
+
         $ip = $this->input->ip_address();
         $date = date("Y-m-d");
         $this->counter->get_user($ip, $date);

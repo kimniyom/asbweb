@@ -12,7 +12,7 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <div class="container">
+    <div class="container" id="album-views">
         <?php
         $this->load->library('takmoph_libraries');
         $this->load->model('photo_model', 'photo');

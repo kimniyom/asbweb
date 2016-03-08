@@ -51,7 +51,7 @@ $list = array(
 
 $active = $head;
 //$list = "";
-echo $lib->breadcrumb($list, $active);
+echo $lib->breadcrumb_backend($list, $active);
 ?>
 <h3><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
 <hr/>
