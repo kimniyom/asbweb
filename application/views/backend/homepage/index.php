@@ -73,17 +73,24 @@ echo $model->breadcrumb_backend($list, $active);
                                 <i class="fa fa-calendar"></i>
                                 <?php echo $model->thaidate($sm->create_date) ?>
                                 </font>
-                                <?php echo $sm->title ?>
-
-                                <a href="<?php echo site_url('backend/sub_homepage/view/' . $sm->id) ?>">
-                                    <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
-
-                                <?php if ($sm->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S') { ?>
-                                    <a href="<?php echo site_url('backend/sub_homepage/update/' . $sm->id) ?>">
-                                        <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                    <button type="button" class="btn btn-danger btn-xs" onclick="delete_subhomepage('<?php echo $sm->id ?>')"><i class="fa fa-trash-o"></i></button>
+                                <?php if ($sm->final == 0) { ?>
+                                    <a href="<?php echo site_url('backend/sub_homepage/viewpper/' . $sm->id . "/" . $rs->id) ?>">
+                                        <?php echo $sm->title ?>
+                                        <i class="fa fa-angle-right text-warning"></i>
+                                    </a>
+                                <?php } else { ?>
+                                    <?php echo $sm->title ?>
                                 <?php } ?>
+                                <div class="pull-right">
+                                    <a href="<?php echo site_url('backend/sub_homepage/view/' . $sm->id) ?>">
+                                        <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
 
+                                    <?php if ($sm->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S') { ?>
+                                        <a href="<?php echo site_url('backend/sub_homepage/update/' . $sm->id) ?>">
+                                            <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <button type="button" class="btn btn-danger btn-xs" onclick="delete_subhomepage('<?php echo $sm->id ?>')"><i class="fa fa-trash-o"></i></button>
+                                    <?php } ?>
+                                </div>
                             </li>
                         <?php endforeach; ?>
                         <?php if ($subhomepage) { ?>
@@ -379,8 +386,8 @@ echo $model->breadcrumb_backend($list, $active);
     }
 
 
-    function popuptypemenu(idmenu) {
-        $("#idmenu").val(idmenu);
+    function popuptypemenu(homepageID) {
+        $("#idmenu").val(homepageID);
         $("#popup_type_menu").modal();
     }
 

@@ -3,31 +3,41 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Modify By Kimniyom
-
-        CKEDITOR.replace('detail', {
-            baseUrl: 'http://localhost/takmoph2015upgrad/EDITOR_FILE/',
-            //baseDir = 'd:\inetpub\wwwroot\www.yourdomain.com\website\assets\images\',
-            language: 'th',
-            height: 500,
-            uiColor: '#FFFFFF',
-            removePlugins: 'bidi,forms,flash,iframe,div,table,tabletools,find',
-            removeButtons: 'Anchor,Underline,Strike,Subscript,Superscript,Editing,Templates,Preview,NewPage,Source,Save,Scayt,About',
-            filebrowserBrowseUrl: '<?php echo $path; ?>ckfinder/ckfinder.html',
-            filebrowserImageBrowseUrl: '<?php echo $path; ?>ckfinder/ckfinder.html?Type=Images',
-            //filebrowserFlashBrowseUrl: '<?//php echo $path; ?>ckfinder/ckfinder.html?Type=Flash',
-            filebrowserUploadUrl: '<?php echo $path; ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-            filebrowserImageUploadUrl: '<?php echo $path; ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
-                    //filebrowserFlashUploadUrl: '<?//php echo $path; ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-        });
+        var type = "<?php echo $type ?>";
+        if (type == 0) {
+            CKEDITOR.replace('detail', {
+                //baseUrl: 'http://localhost/takmoph2015upgrad/EDITOR_FILE/',
+                //baseDir = 'd:\inetpub\wwwroot\www.yourdomain.com\website\assets\images\',
+                language: 'th',
+                height: 500,
+                uiColor: '#FFFFFF',
+                removePlugins: 'bidi,forms,flash,iframe,div,table,tabletools,find',
+                removeButtons: 'Anchor,Underline,Strike,Subscript,Superscript,Editing,Templates,Preview,NewPage,Source,Save,Scayt,About',
+                filebrowserBrowseUrl: '<?php echo $path; ?>ckfinder/ckfinder.html',
+                filebrowserImageBrowseUrl: '<?php echo $path; ?>ckfinder/ckfinder.html?Type=Images',
+                //filebrowserFlashBrowseUrl: '<?//php echo $path; ?>ckfinder/ckfinder.html?Type=Flash',
+                filebrowserUploadUrl: '<?php echo $path; ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserImageUploadUrl: '<?php echo $path; ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+                        //filebrowserFlashUploadUrl: '<?//php echo $path; ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+            });
+        }
     });
 
     function Save_update() {
         var url = "<?php echo site_url('backend/sub_homepage/save_update') ?>";
         var title = $("#title").val();
-        var detail = CKEDITOR.instances.detail.getData();
+        var type = "<?php echo $type ?>";
+
+        var detail;
+        if (type == 0) {
+            detail = CKEDITOR.instances.detail.getData();
+        } else {
+            detail = "";
+        }
+
         var id = "<?php echo $result->id ?>";
 
-        if (title == '' || detail == '') {
+        if (title == '') {
             alert("กรอกข้อมูลไม่ครบ ...");
             return false;
         }
@@ -37,7 +47,8 @@
             detail: detail
         };
         $.post(url, data, function (success) {
-            window.location = "<?php echo site_url() ?>/backend/sub_homepage/view/" + id;
+            window.history.back();
+            //window.location = "<?//php echo site_url() ?>/backend/sub_homepage/view/" + id;
         });
     }
 </script>
@@ -47,7 +58,8 @@ $model = new takmoph_libraries();
 
 $list = array(
     array('url' => 'backend/homepage', 'label' => 'ตัวอย่าง'),
-    array('url' => 'backend/sub_homepage/all/' . $result->homepage_id, 'label' => $result->title_name)
+    array('url' => 'backend/sub_homepage/all/' . $result->homepage_id, 'label' => $result->title_name),
+    array('url' => 'backend/sub_homepage/viewpper/' . $subhomepage_id.'/'.$result->homepage_id, 'label' => $result->title)
 );
 
 $active = "update";
@@ -72,8 +84,10 @@ echo $model->breadcrumb_backend($list, $active);
 <div class="form-group">
     <label>เรื่อง</label>
     <input type="text" class="form-control" id="title" value="<?php echo $result->title ?>"/>
-    <label>รายละเอียด</label>
-    <textarea id="detail" class="form-control"><?php echo $result->detail ?></textarea>
+    <?php if (empty($type)) { ?>
+        <label>รายละเอียด</label>
+        <textarea id="detail" class="form-control"><?php echo $result->detail ?></textarea>
+    <?php } ?>
     <hr/>
     <button type="button" class="btn btn-primary" onclick="Save_update()">บันทึกข้อมูล</button>
 </div>

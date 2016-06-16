@@ -44,9 +44,12 @@ class sub_homepage extends CI_Controller {
         $this->output($data, $page, $head);
     }
 
-    public function view($Id = null) {
+    public function view($Id = null,$subhomepage_id = null,$homepage_id = null) {
         $subhomepage = new sub_homepage_model();
         $data['result'] = $subhomepage->get_subhomepage_where($Id)->row();
+        $data['subhomepage_id'] = $subhomepage_id;
+        $data['subhomepage'] = $subhomepage->get_subhomepage_where($subhomepage_id)->row();
+        $data['homepage_id'] = $homepage_id;
         $head = "view";
         $page = "backend/sub_homepage/view";
         $this->output($data, $page, $head);
@@ -78,10 +81,12 @@ class sub_homepage extends CI_Controller {
         $this->db->insert("sub_homepage", $columns);
     }
 
-    public function update($Id = null) {
+    public function update($Id = null, $type = null) {
         $sub_homepage = new sub_homepage_model();
         $page = "backend/sub_homepage/update";
         $data['result'] = $sub_homepage->get_subhomepage_where($Id)->row();
+        $data['type'] = $type;
+        $data['subhomepage_id'] = $Id;
         $head = $data['result']->title;
         $this->output($data, $page, $head);
     }
@@ -114,10 +119,44 @@ class sub_homepage extends CI_Controller {
 
         $this->db->insert("sub_homepage", $columns);
 
-        $sql = "SELECT max(id) AS MAXID FROM sub_homepage LIMIT 1";
+        $sql = "SELECT id,homepage_id FROM sub_homepage ORDER BY id DESC LIMIT 1";
         $result = $this->db->query($sql)->row();
-        $json = array("id" => $result->MAXID);
+        $json = array("id" => $result->id, "homepage_id" => $result->homepage_id);
         echo json_encode($json);
+    }
+
+    public function viewpper($subid, $menuID) {
+        $sub_homepage = new sub_homepage_model();
+        $page = "backend/sub_homepage/viewupper";
+        $data['menu'] = $this->model->get_menu_where($menuID)->row();
+        $data['result'] = $sub_homepage->get_subhomepage_where($subid)->row();
+        $data['upper'] = $sub_homepage->getupper($subid);
+        $head = $data['result']->title;
+        $this->output($data, $page, $head);
+    }
+
+    public function create_upper($subid = null, $homepageId = null) {
+        $homepage = new homepage_model();
+        $data['menu'] = $homepage->get_subhomepage_where($subid)->row();
+        $page = "backend/sub_homepage/create_upper";
+        $head = $data['menu']->title_name;
+        $data['homepage_id'] = $homepageId;
+        $this->output($data, $page, $head);
+    }
+
+    public function save_upper() {
+        $input = $this->input;
+        $columns = array(
+            "title" => $input->post("title"),
+            "detail" => $input->post("detail"),
+            "upper" => $input->post("upper"),
+            "homepage_id" => $input->post('homepage_id'),
+            "final" => '1',
+            "owner" => $this->session->userdata('user_id'),
+            "create_date" => date("Y-m-d H:i:s")
+        );
+
+        $this->db->insert("sub_homepage", $columns);
     }
 
 }

@@ -1,11 +1,20 @@
 <?php
 $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();
-
+if (!empty($subhomepage_id)) {
+    $link = 'backend/sub_homepage/viewpper/' . $subhomepage_id . '/' . $homepage_id;
+    $label = $subhomepage->title;
+} else {
+    $link = "";
+    $label = "";
+}
 $list = array(
     array('url' => 'backend/homepage', 'label' => 'ตัวอย่าง'),
-    array('url' => 'backend/sub_homepage/all/' . $result->homepage_id, 'label' => $result->title_name)
+    array('url' => 'backend/sub_homepage/all/' . $result->homepage_id, 'label' => $result->title_name),
+    array('url' => $link, 'label' => $label)
 );
+
+
 
 $active = $head;
 //$list = "";
@@ -25,10 +34,12 @@ echo $model->breadcrumb_backend($list, $active);
 
 </h3>
 <hr/>
-<?php if($result->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S'){?>
-  <a href="<?php echo site_url('backend/sub_homepage/update/' . $result->id) ?>">
-    <button type="button" class="btn btn-default"><i class="fa fa-pencil text-success"></i> แก้ไข</button></a>
-    <button type="button" class="btn btn-default" onclick="delete_subhomepage('<?php echo $result->id ?>')"><i class="fa fa-trash-o text-danger"></i> ลบ</button>
+<?php if ($result->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S') { ?>
+    <!--
+      <a href="<?//php echo site_url('backend/sub_homepage/update/' . $result->id) ?>">
+        <button type="button" class="btn btn-default"><i class="fa fa-pencil text-success"></i> แก้ไข</button></a>
+        <button type="button" class="btn btn-default" onclick="delete_subhomepage('<?//php echo $result->id ?>')"><i class="fa fa-trash-o text-danger"></i> ลบ</button>
+    -->
 <?php } ?>
 <h4>
     เรื่อง :: <?php echo $result->title ?>
@@ -52,7 +63,7 @@ echo $model->breadcrumb_backend($list, $active);
             var data = {id: Id};
 
             $.post(url, data, function (success) {
-                window.location = "<?php echo site_url('backend/sub_homepage/all/') ?>" + "/" +home_id;
+                window.location = "<?php echo site_url('backend/sub_homepage/all/') ?>" + "/" + home_id;
             });
         }
     }

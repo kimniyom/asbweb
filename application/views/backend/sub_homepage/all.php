@@ -17,7 +17,7 @@ echo $model->breadcrumb_backend($list, $active);
 <table class="table table-striped" id="tb_subhome">
     <thead>
         <tr>
-            <th>#</th>
+            <th style=" width: 2%;">#</th>
             <th>เรื่อง</th>
             <th></th>
         </tr>
@@ -30,15 +30,34 @@ echo $model->breadcrumb_backend($list, $active);
             ?>
             <tr>
                 <td><?php echo $i; ?></td>
-                <td><?php echo $model->thaidate($rs->create_date) ?> <?php echo $rs->title; ?></td>
-                <td style=" text-align: right; width: 15%;">
-                    <a href="<?php echo site_url('backend/sub_homepage/view/' . $rs->id) ?>">
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye text-info"></i></button></a>
-                        <?php if($rs->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S'){?>
-                    <a href="<?php echo site_url('backend/sub_homepage/update/' . $rs->id) ?>">
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil text-warning"></i></button></a>
-                    <button type="button" class="btn btn-default btn-sm" onclick="delete_subhomepage('<?php echo $rs->id ?>')"><i class="fa fa-trash text-danger"></i></button>
+                <td>
+                    <?php if ($rs->final == '0') { ?>
+                        <i class="fa fa-angle-right"></i>
+                        <a href="<?php echo site_url('backend/sub_homepage/viewpper/' . $rs->id . '/' . $homepage->id) ?>">
+                            <?php echo $model->thaidate($rs->create_date) ?> <?php echo $rs->title; ?>
+                        </a>
+                    <?php } else { ?>
+                        <?php echo $model->thaidate($rs->create_date) ?> <?php echo $rs->title; ?>
                     <?php } ?>
+                </td>
+                <td style=" text-align: right; width: 15%;">
+                    <?php if ($rs->final == '1') { ?>
+                        <a href="<?php echo site_url('backend/sub_homepage/view/' . $rs->id) ?>">
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye text-info"></i></button></a>
+                    <?php } ?>
+                    
+                    
+                    <?php if ($rs->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S') { ?>
+                        <?php if ($rs->final == '1') { ?>
+                            <a href="<?php echo site_url('backend/sub_homepage/update/' . $rs->id) ?>">
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil text-warning"></i></button></a>
+                            <button type="button" class="btn btn-default btn-sm" onclick="delete_subhomepage('<?php echo $rs->id ?>')"><i class="fa fa-trash text-danger"></i></button>
+                        <?php } else { ?>
+                            <a href="<?php echo site_url('backend/sub_homepage/update/' . $rs->id . '/' . true) ?>">
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil text-warning"></i></button></a>
+                            <button type="button" class="btn btn-default btn-sm" onclick="delete_subhomepage('<?php echo $rs->id ?>')"><i class="fa fa-trash text-danger"></i></button>
+                            <?php } ?>
+                        <?php } ?>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -46,6 +65,9 @@ echo $model->breadcrumb_backend($list, $active);
 </table>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        $("#tb_subhome").dataTable();
+    });
     function delete_subhomepage(Id) {
         var r = confirm("คุณต้องการลบข้อมูลใช่ หรือ ไม่ ...?");
         if (r == true) {
