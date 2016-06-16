@@ -52,9 +52,13 @@ class sub_homepage extends CI_Controller {
         $this->output($data, $page, $head);
     }
 
-    public function create_subhomepage($Id = null) {
+    public function create_subhomepage($Id = null, $type = null) {
         $homepage = new homepage_model();
-        $data['menu'] = $homepage->get_menu_where($Id)->row();
+        if (empty($type)) {
+            $data['menu'] = $homepage->get_menu_where($Id)->row();
+        } else {
+            $data['menu'] = $homepage->get_subhomepage_where($Id)->row();
+        }
         $page = "backend/sub_homepage/create";
         $head = $data['menu']->title_name;
         $this->output($data, $page, $head);
@@ -66,6 +70,7 @@ class sub_homepage extends CI_Controller {
             "title" => $input->post("title"),
             "detail" => $input->post("detail"),
             "homepage_id" => $input->post("homepage_id"),
+            "final" => '1',
             "owner" => $this->session->userdata('user_id'),
             "create_date" => date("Y-m-d H:i:s")
         );
@@ -95,6 +100,24 @@ class sub_homepage extends CI_Controller {
         $Id = $this->input->post('id');
         $this->db->where("id", $Id);
         $this->db->delete("sub_homepage");
+    }
+
+    public function create_subhomepage_upper() {
+        $input = $this->input;
+        $columns = array(
+            "title" => $input->post("title"),
+            "homepage_id" => $input->post("homepage_id"),
+            "owner" => $this->session->userdata('user_id'),
+            "final" => '0',
+            "create_date" => date("Y-m-d H:i:s")
+        );
+
+        $this->db->insert("sub_homepage", $columns);
+
+        $sql = "SELECT max(id) AS MAXID FROM sub_homepage LIMIT 1";
+        $result = $this->db->query($sql)->row();
+        $json = array("id" => $result->MAXID);
+        echo json_encode($json);
     }
 
 }

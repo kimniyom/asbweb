@@ -47,6 +47,16 @@ class homepage_model extends CI_Model {
 
         return $query;
     }
+    
+    function get_subhomepage_where($Id = null) {
+        $this->db->select("id,title AS title_name");
+        $this->db->from("sub_homepage");
+        $this->db->where("id", "$Id");
+
+        $query = $this->db->get();
+
+        return $query;
+    }
 
     function get_type() {
         $this->db->select("*");
