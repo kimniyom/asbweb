@@ -28,7 +28,18 @@ class template extends CI_Controller {
     }
 
     public function set_template() {
-        $themes = $this->input->post('template');
+        $id = $this->input->post('id');
+        $this->db->select("template");
+        $this->db->from("template");
+        $this->db->where("id", $id);
+        $query = $this->db->get();
+        $rs = $query->row();
+        $columns = array("active" => '0');
+        $this->db->update("template", $columns, "active = 1");
+
+        $themes = $rs->template;
+        $columnsSet = array("active" => '1');
+        $this->db->update("template", $columnsSet, "id = '$id' ");
         $this->session->set_userdata("pathThemes", "themes/" . $themes);
         $this->session->set_userdata("template", 'template/' . $themes . '/index');
     }
@@ -83,6 +94,9 @@ class template extends CI_Controller {
                                 //เอาไฟล์ Index เข้าไปใน Folder
 
                                 copy($targetFolder . '/' . $nof . '/index.php', $pathTemplate . '/index.php');
+                                $NewName = $rest = substr($Name, 0, -4);  // returns "cde" 
+                                $columns = array("template" => $NewName, "active" => '0');
+                                $this->db->insert("template", $columns);
                             } else {
                                 echo "error";
                             }
