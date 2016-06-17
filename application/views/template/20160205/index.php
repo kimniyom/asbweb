@@ -85,8 +85,7 @@
                 <?php echo $style->webname_full ?>
             </div>
             <!-- Navigation -->
-            <nav class="navbar navbar-inverse" role="navigation" id="nav-bar"
-                 style=" background: <?php echo $style->color_navbar; ?>">
+            <nav class="navbar navbar-inverse" role="navigation" id="nav-bar">
                 <div id="set-nav-bar">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -427,7 +426,7 @@
                     ####################
                     -->
                     <!-- Slide News -->
-                    <div class="well well-sm" id="menu_and_news" style="display: none; background: none; margin-top: 0px; padding-top: 0px;">
+                    <div id="menu_and_news" style="display: none; margin-top: 0px; padding-top: 0px;">
                         <h3><i class="fa fa-newspaper-o"></i> ข่าวล่าสุด</h3>
                         <hr id="hr"/>
                         <div class="row">
@@ -484,6 +483,7 @@
                      ################
                      ## Content Page
                      ################
+                    
                     -->
                     <div id="tooplate_content">
                         <?php

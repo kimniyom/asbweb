@@ -52,6 +52,12 @@ class sub_homepage_model extends CI_Model {
         return $query;
     }
     
+    function get_subhomepage_detail($Id = null) {
+        $sql = "SELECT * FROM sub_homepage WHERE id = '$Id' ";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+    
     function getupper($subid = null) {
         $this->db->select("*");
         $this->db->from("sub_homepage");

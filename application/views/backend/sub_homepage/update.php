@@ -55,11 +55,17 @@
 <?php
 $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();
-
+if (!empty($type)) {
+    $link = 'backend/sub_homepage/viewpper/' . $subhomepage_id . '/' . $result->homepage_id;
+    $label = $result->title;
+} else {
+    $link = "";
+    $label = "";
+}
 $list = array(
     array('url' => 'backend/homepage', 'label' => 'ตัวอย่าง'),
     array('url' => 'backend/sub_homepage/all/' . $result->homepage_id, 'label' => $result->title_name),
-    array('url' => 'backend/sub_homepage/viewpper/' . $subhomepage_id.'/'.$result->homepage_id, 'label' => $result->title)
+    array('url' => $link, 'label' => $label)
 );
 
 $active = "update";

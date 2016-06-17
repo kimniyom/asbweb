@@ -2,13 +2,23 @@
     <?php
     $this->load->library('takmoph_libraries');
     $model = new takmoph_libraries();
-
+    
+    if(!empty($submenuID)){
+        $link = 'homepage/viewupper/' . $this->takmoph_libraries->encode($submenu->id).'/'.$submenu->id;
+        $labels = $submenu->title;
+    } else {
+        $link = "";
+        $labels = "";
+    }
+    
     $list = array(
         //array('url' => 'backend/homepage', 'label' => 'ตัวอย่าง'),
-        array('url' => 'homepage/all/' . $this->takmoph_libraries->encode($result->homepage_id), 'label' => $result->title_name)
+        array('url' => 'homepage/all/' . $this->takmoph_libraries->encode($result->homepage_id), 'label' => $result->title_name),
+        array('url' => $link, 'label' => $labels)
     );
 
     $active = $head;
+    
     ?>
     <div class="row" style=" margin: 0px; padding: 0px;">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-left: 0px;">

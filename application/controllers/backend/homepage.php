@@ -94,7 +94,7 @@ class homepage extends CI_Controller {
             $tempFile = $_FILES['Filedata']['tmp_name'];
             $FULLNAME = $_FILES['Filedata']['name'];
             $type = substr($FULLNAME, -3);
-            $Name = "banner_" . random_string('alnum',30) . "." . $type;
+            $Name = "banner_" . random_string('alnum', 30) . "." . $type;
             $targetFile = $targetFolder . '/' . $Name;
             //$targetFile = $targetFolder . '/' . $Name;
             // Validate the file type
@@ -117,38 +117,43 @@ class homepage extends CI_Controller {
         }
     }
 
-    public function delete(){
-      $id = $this->input->post('id');
-      //Delete Sub Homepage
-      $this->db->where("homepage_id",$id);
-      $this->db->delete("sub_homepage");
-
-      //Delete Homepage
-      $this->db->where("id",$id);
-      $this->db->delete("menu_homepage");
+    public function delete() {
+        $id = $this->input->post('id');
+        $sql = "SELECT * FROM sub_homepage WHERE homepage_id = '$id' ";
+        $homepage = $this->db->query($sql);
+        if (!empty($homepage)) {
+            foreach ($homepage->result() as $rs):
+                $this->db->where("upper", $rs->id);
+                $this->db->delete("sub_homepage");
+            endforeach;
+            //Delete Sub Homepage
+            $this->db->where("homepage_id", $id);
+            $this->db->delete("sub_homepage");
+        }
+        //Delete Homepage
+        $this->db->where("id", $id);
+        $this->db->delete("menu_homepage");
     }
 
     public function all() {
         $model = new homepage_model();
         $data['homepage'] = $model->get_menu();
         $page = "backend/homepage/all";
-        $this->load->view($page,$data);
-
+        $this->load->view($page, $data);
     }
 
-    public function set_level(){
-      $id = $this->input->post('id');
-      $level = $this->input->post('level');
+    public function set_level() {
+        $id = $this->input->post('id');
+        $level = $this->input->post('level');
 
-      $columns = array(
-        "level" => $level
-      );
+        $columns = array(
+            "level" => $level
+        );
 
-      $this->db->where("id",$id);
-      $this->db->update("menu_homepage",$columns);
+        $this->db->where("id", $id);
+        $this->db->update("menu_homepage", $columns);
 
-      echo "ID = ".$id." LEVEL = ".$level;
+        echo "ID = " . $id . " LEVEL = " . $level;
     }
-
 
 }

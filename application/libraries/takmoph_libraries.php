@@ -20,8 +20,10 @@ class takmoph_libraries {
             foreach ($list as $result):
                 $url = site_url($result['url']);
                 $label = $result['label'];
-                $str .= $icon;
-                $str .= '<li><a href = "' . $url . '">' . $label . '</a></li >';
+                if (!empty($label)) {
+                    $str .= $icon;
+                    $str .= '<li><a href = "' . $url . '">' . $label . '</a></li >';
+                }
             endforeach;
         }
         $str .= $icon;
@@ -42,7 +44,7 @@ class takmoph_libraries {
             foreach ($list as $result):
                 $url = site_url($result['url']);
                 $label = $result['label'];
-                
+
                 if (!empty($label)) {
                     $str .= $icon;
                     $str .= '<li><a href = "' . $url . '">' . $label . '</a></li >';

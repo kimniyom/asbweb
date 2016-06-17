@@ -44,7 +44,7 @@ class sub_homepage extends CI_Controller {
         $this->output($data, $page, $head);
     }
 
-    public function view($Id = null,$subhomepage_id = null,$homepage_id = null) {
+    public function view($Id = null, $subhomepage_id = null, $homepage_id = null) {
         $subhomepage = new sub_homepage_model();
         $data['result'] = $subhomepage->get_subhomepage_where($Id)->row();
         $data['subhomepage_id'] = $subhomepage_id;
@@ -103,6 +103,12 @@ class sub_homepage extends CI_Controller {
 
     public function delete() {
         $Id = $this->input->post('id');
+        $sql = "SELECT * FROM sub_homepage WHERE upper = '$Id' ";
+        $result = $this->db->query($sql);
+        if (!empty($result)) {
+            $this->db->where("upper", $Id);
+            $this->db->delete("sub_homepage");
+        }
         $this->db->where("id", $Id);
         $this->db->delete("sub_homepage");
     }

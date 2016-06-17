@@ -1,25 +1,32 @@
 <?php
-  $this->load->model('photo_model','photo');
+$this->load->model('photo_model', 'photo');
 ?>
 <!--main-->
 <div class="container" id="album-views">
-      <?php
-      $this->load->library('takmoph_libraries');
-      $model = new takmoph_libraries();
-      /*
-        $list = array(
-        array('url' => '', 'label' => 'menu1'),
-        array('url' => '', 'label' => 'menu2')
-        );
-       *
-       */
-      $active = $head;
-      $list = "";
-      echo $model->breadcrumb($list, $active);
-      ?>
-      <h3 id="head_submenu"><img src="<?php echo base_url()?>images/Album-icon.png" style="width:48px;"/> <?php echo $head ?></h3>
-      <hr id="hr"/>
+    <?php
+    $this->load->library('takmoph_libraries');
+    $model = new takmoph_libraries();
+    /*
+      $list = array(
+      array('url' => '', 'label' => 'menu1'),
+      array('url' => '', 'label' => 'menu2')
+      );
+     *
+     */
+    $active = $head;
+    $list = "";
+    //echo $model->breadcrumb($list, $active);
+    ?>
 
+    <div class="row" style=" margin: 0px; padding: 0px;">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-left: 0px;">
+            <h3 id="head_submenu"><img src="<?php echo base_url() ?>images/Album-icon.png" style="width:48px;"/> <?php echo $head ?></h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-right: 0px;">
+            <?php echo $model->breadcrumb($list, $active); ?>
+        </div>
+    </div>
+    <hr id="hr"/>
     <div class="row">
         <?php
         $i = 0;
@@ -32,9 +39,9 @@
                         <?php if (!empty($images)) { ?>
                             <img src="<?php echo base_url() ?>upload_images/photo/<?php echo $images; ?>" class="img-responsive img-polaroid" style="height:200px;"/>
                         <?php } else { ?>
-                          <center>
-                            <img src="<?php echo base_url() ?>upload_images/photo/<?php echo $images; ?>" class="img-responsive img-polaroid" style="height:200px;"/>
-                          </center>
+                            <center>
+                                <img src="<?php echo base_url() ?>upload_images/photo/<?php echo $images; ?>" class="img-responsive img-polaroid" style="height:200px;"/>
+                            </center>
                         <?php } ?>
                     </div>
                     <p class="detail">
@@ -53,16 +60,16 @@
                         ?>
                         <br/>
                         <font style=" font-size: 12px;" class="pull-right">
-                          <?php echo $model->thaidate($albums->create_date) ?>
+                        <?php echo $model->thaidate($albums->create_date) ?>
                         </font>
                     </p>
 
                     <div id="btn-card">
-                    <a href="<?php echo site_url('photo/gallery/'.$albums->id)?>">
-                        <button type="button" class="btn btn-primary btn-sm">
-                          <i class="fa fa-eye text-warning"></i> จำนวนรูปภาพ
-                          <span class="badge"><?php echo $this->photo->count_gallery($albums->id); ?></button></span></a>
-                  </div>
+                        <a href="<?php echo site_url('photo/gallery/' . $albums->id) ?>">
+                            <button type="button" class="btn btn-primary btn-sm">
+                                <i class="fa fa-eye text-warning"></i> จำนวนรูปภาพ
+                                <span class="badge"><?php echo $this->photo->count_gallery($albums->id); ?></button></span></a>
+                    </div>
                 </div>
             </div>
 
@@ -70,6 +77,6 @@
 
     </div>
     <div style="text-align:center;">
-      <?php echo $s_pagination ?>
+        <?php echo $s_pagination ?>
     </div>
 </div>

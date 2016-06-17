@@ -82,12 +82,18 @@ echo $model->breadcrumb_backend($list, $active);
                                     <?php echo $sm->title ?>
                                 <?php } ?>
                                 <div class="pull-right">
-                                    <a href="<?php echo site_url('backend/sub_homepage/view/' . $sm->id) ?>">
-                                        <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
-
+                                    <?php if ($sm->final == 1) { ?>
+                                        <a href="<?php echo site_url('backend/sub_homepage/view/' . $sm->id) ?>">
+                                            <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
+                                    <?php } ?>
                                     <?php if ($sm->owner == $this->session->userdata('user_id') || $this->session->userdata('status') == 'S') { ?>
-                                        <a href="<?php echo site_url('backend/sub_homepage/update/' . $sm->id) ?>">
-                                            <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <?php if ($sm->final == 0) { ?>
+                                            <a href="<?php echo site_url('backend/sub_homepage/update/' . $sm->id . '/' . true) ?>">
+                                                <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <?php } else { ?>
+                                            <a href="<?php echo site_url('backend/sub_homepage/update/' . $sm->id) ?>">
+                                                <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <?php } ?>
                                         <button type="button" class="btn btn-danger btn-xs" onclick="delete_subhomepage('<?php echo $sm->id ?>')"><i class="fa fa-trash-o"></i></button>
                                     <?php } ?>
                                 </div>
@@ -413,8 +419,8 @@ echo $model->breadcrumb_backend($list, $active);
         }
         $.post(url, data, function (datas) {
             var id = datas.id;
-            alert(id);
-            var urllink = "<?php echo site_url('backend/sub_homepage/create_subhomepage/') ?>" + "/" + id + "/" + "true";
+            var homepage_id = datas.homepage_id;
+            var urllink = "<?php echo site_url('backend/sub_homepage/viewpper/') ?>" + "/" + id + "/" + homepage_id;
             window.location = urllink;
         }, "json");
     }

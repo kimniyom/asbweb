@@ -412,6 +412,7 @@
         -->
         <div id="tooplate_content">
             <div class=" container">
+                
                 <?php
                 if ($detail == "") {
                     $this->load->view($page . ".php");
