@@ -28,6 +28,9 @@ $style = $this->menubar_model->get_style();
         $("#menu_and_news").show();
         $("#main-album").show();
         $("#main-menu-system").show();
+        $("#controlmenu").show();
+        $("#controlnewhot").show();
+        $("#controlnew").show();
         $(".BL").show();
     });
 

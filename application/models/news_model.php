@@ -13,13 +13,18 @@ class news_model extends CI_Model {
         $this->CI->query("SET NAMES 'UTF8'");
     }
 
-    function get_news_limit() {
+    function get_news_limit($limit = null) {
+        if(empty($limit)){
+            $limits = 6;
+        } else {
+            $limits = $limit;
+        }
         $this->db->cache_on();
         $sql = "SELECT *
                     FROM tb_news N LEFT JOIN (SELECT MAX(id),new_id,images FROM images_news GROUP BY new_id) IM ON N.id = IM.new_id
                     INNER JOIN mas_user M ON N.user_id = M.user_id
                     ORDER BY N.id DESC
-                    LIMIT 6 ";
+                    LIMIT $limits ";
         return $this->db->query($sql);
     }
 

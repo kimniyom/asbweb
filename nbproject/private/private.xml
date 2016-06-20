@@ -25,9 +25,14 @@
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/views/admin/show_dengue.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/sub_homepage.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/sub_homepage/create.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/homepage.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/myhome.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/users.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/themes/asborange/js/system.js</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/asborange/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/themes/asborange/css/system.css</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/site.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/users.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/news_model.php</file>
         </group>
     </open-files>
 </project-private>
