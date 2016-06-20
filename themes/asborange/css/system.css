@@ -12,7 +12,7 @@ html {
     /*
   background: #f0f0f0;
     */
-    background: #f9b816;
+    /*background: #f9b816;*/
 }
 
 
@@ -91,7 +91,7 @@ body .btn{
 
 
 #hr{
-    border: solid 2px #cccccc;
+    border: solid 1px #cccccc;
     margin-top: 0px;
 }
 
@@ -126,7 +126,7 @@ body .btn{
     border-radius: 0px;
     margin-top: 0px;
     font-size: 16px;
-    background: #f37a01;
+    /*background: #f37a01;*/
     /*
     background: rgba(255,175,75,1);
 background: -moz-linear-gradient(top, rgba(255,175,75,1) 0%, rgba(255,146,10,1) 100%);
@@ -509,14 +509,10 @@ section{
     background: #FFFFFF;
     margin-top:0px;
     border-radius:0px;
-    border: #f37a01 solid 1px;
     border-top: none;
     padding: 0px;
 }
 
-#body{
-    background: none;
-}
 
 
 

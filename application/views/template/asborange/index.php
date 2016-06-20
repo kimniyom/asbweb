@@ -28,6 +28,7 @@
         <meta name="author" content="">
 
         <style type="text/css">
+
             #body{<?php echo $this->background_model->background_active() ?>}
             #nav-bar ul li a:active{ background: <?php echo $style->color_head ?>;}
             #nav-bar ul li a:after{ background: <?php echo $style->color_head ?>;}
@@ -79,7 +80,8 @@
         <div id="main-content">
             <!-- Navigation -->
             <nav class="navbar navbar-default" role="navigation" id="nav-bar" style=" background: none;"></nav>
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="nav-bar">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="nav-bar"
+                 style=" background: <?php echo $style->color_navbar ?>">
                 <div id="set-nav-bar" style=" border-top: 0px;" class=" container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -242,7 +244,8 @@
                 </div>
             </div>
 
-            <div class="container" id="container">
+            <div class="container" id="container"
+                 style="border:<?php echo $style->color_navbar ?> solid 1px; border-top: none;">
                 <!--
                 #####################
                 ## Menu Left 
@@ -256,7 +259,7 @@
                 <div id="controlmenu" style=" display: none; background: #ededed;">
                     <div class="well" style=" background: none;">
                         <h3><i class="fa fa-th-large"></i> เมนู</h3>
-                        <hr id="hr"/>
+                        <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>
                         <!--
                             #
                             #
@@ -277,7 +280,10 @@
                                     ?>
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
                                         <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;">
-                                            <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
+                                            <div id="submenu" class="btn btn-block hvr-trim" 
+                                                 style="background:<?php echo $rs->bgcolor ?>;
+                                                 color:<?php echo $rs->textcolor ?>; 
+                                                 border-radius:0px;">
                                                 <div class="text-menu">
                                                     <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/>
                                                     <?= $rs->mas_menu ?>
@@ -346,7 +352,7 @@
                         <!-- Slide News -->
                         <div id="menu_and_news" style="display: none; margin-top: 0px; padding-top: 0px;">
                             <h3><i class="fa fa-newspaper-o"></i> ข่าวล่าสุด</h3>
-                            <hr id="hr"/>
+                            <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>
                             <div class="row">
                                 <?php
                                 $i = 0;
@@ -355,7 +361,7 @@
                                     $i++;
                                     ?>
                                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                        <div class="container-card" style=" max-height: 200px;">
+                                        <div class="container-card" style="max-height: 200px;border:<?php echo $style->color_navbar ?> solid 1px;">
                                             <div class="img-wrapper">
                                                 <?php if (!empty($new->images)) { ?>
                                                     <img src="<?php echo base_url() ?>upload_images/news/<?php echo $new->images; ?>" class="img-responsive img-polaroid" style="height:100px;"/>
@@ -402,7 +408,6 @@
                  ################
                  ## Content Page
                  ################
-                
                 -->
                 <div id="tooplate_content">
                     <div class="well" style=" background: none;">
@@ -467,7 +472,7 @@
                         <div style="margin-top: 0px;">
                             <div style=" margin-bottom: 30px;">
                                 <h3 style="color:#ff6600; text-shadow:none;"><i class="fa fa-th"></i> ระบบงาน</h3>
-                                <hr id="hr" style="border:#ff6600 solid 2px;"/>
+                                <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>
                                 <div class="row">
 
                                     <!-- Menu Program -->
@@ -478,7 +483,9 @@
                                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
                                             <a href="<?= $mm->link ?>" target="_blank" style=" text-decoration: none;">
                                                 <div class="hvr-grow" style=" width: 100%;">
-                                                    <div class="container-card" style="max-height: 150px; text-align: center;" id="menu-hover">
+                                                    <div class="container-card" 
+                                                         style="max-height: 150px; text-align: center;" 
+                                                         id="menu-hover">
                                                         <div class="img-wrapper">
                                                             <img src="<?php echo base_url() ?>icon_menu/<?php echo $mm->system_images ?>" class="img-responsive" style="height:100px;"/>
                                                         </div>
@@ -510,7 +517,7 @@
         ########################
         -->
         <nav class="navbar navbar-inverse" role="navigation" style="background: <?php echo $style->color_navbar; ?>" id="footer">
-            <div class=" container">
+            <div class="container">
                 <div  style="color:<?php echo $style->color_text ?>;">
                     <?php echo $style->footer ?>
                     <hr style="border-top:solid 1px <?php echo $style->color_head ?>;"/>
