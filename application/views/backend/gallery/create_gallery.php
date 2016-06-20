@@ -15,7 +15,7 @@
             'fileSizeLimit': '10MB', //อัพโหลดได้ครั้งละไม่เกิน 1024kb
             //'width': '350',
             //'height': '40',
-            'fileTypeExts': '*.gif; *.jpg; *.png', //กำหนดชนิดของไฟล์ที่สามารถอัพโหลดได้
+            'fileTypeExts': '*.gif; *.JPG; *.jpg; *jpeg; *.png', //กำหนดชนิดของไฟล์ที่สามารถอัพโหลดได้
             'multi': true, //เปิดใช้งานการอัพโหลดแบบหลายไฟล์ในครั้งเดียว
             'queueSizeLimit': 10, //อัพโหลดได้ครั้งละ 5 ไฟล์
             'onUploadComplete': function (file, data, response) { //เมื่ออัพโหลดเสร็จแล้วให้เรียกใช้งาน function load()
