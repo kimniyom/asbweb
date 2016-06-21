@@ -28,6 +28,7 @@
         <meta name="author" content="">
 
         <style type="text/css">
+
             #body{<?php echo $this->background_model->background_active() ?>}
             #nav-bar ul li a:active{ background: <?php echo $style->color_head ?>;}
             #nav-bar ul li a:after{ background: <?php echo $style->color_head ?>;}
@@ -76,17 +77,12 @@
     </head>
 
     <body id="body">
-        <div class="container" id="main-content">
-            <div class="btn btn-default pull-right" id="sign-in">
-                <a href="<?php echo site_url('users/login') ?>"><i class="fa fa-lock"></i> Sign In</a>
-            </div>
-            <div id="head-logo">
-                <img src="<?php echo base_url() ?>upload_images/logo/<?php echo $style->logo ?>" style=" height: 52px;"/>
-                <?php echo $style->webname_full ?>
-            </div>
+        <div id="main-content">
             <!-- Navigation -->
-            <nav class="navbar navbar-inverse" role="navigation" id="nav-bar">
-                <div id="set-nav-bar">
+            <nav class="navbar navbar-default" role="navigation" id="nav-bar" style=" background: none;"></nav>
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="nav-bar"
+                 style=" background: <?php echo $style->color_navbar ?>">
+                <div id="set-nav-bar" style=" border-top: 0px;" class=" container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -99,6 +95,9 @@
                             -->
                             <font style="color:<?php echo $style->color_text ?>;"><i class="fa fa-bars"></i> Menu</font>
                         </button>
+                        <a class="navbar-brand" style=" margin-top: 0px; padding-top:10px;">
+                            <img src="<?php echo base_url() ?>upload_images/logo/<?php echo $style->logo ?>" style=" height: 42px;"/>
+                        </a>
                         <a class="navbar-brand" href="#" style=" margin-top: 0px; color: <?php echo $style->color_text ?>;"><?php echo $style->webname_short ?></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -146,9 +145,12 @@
                                         </ul>
                                     </li>
                                 <?php } ?>
-                            <?php endforeach; ?>
-                            <!-- EndMenuNavbar -->
-                        </ul><!--- /.nav navbar-nav pull-right-->
+                            <?php endforeach; ?>       
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<?php echo site_url('users/login') ?>" style="color: <?php echo $style->color_text ?>;"><i class="fa fa-lock"></i> เข้าสู่ระบบ</a></li>
+
+                        </ul>
                     </div>
                     <!-- /.navbar-collapse -->
                 </div>
@@ -156,7 +158,7 @@
             </nav>
 
             <!-- Half Page Image Background Carousel Header -->
-            <header id="myCarousel" class="carousel slide carousel-fade" style=" display: none;">
+            <header id="myCarousel" class="carousel slide" style=" display: none;">
                 <!-- Wrapper for Slides -->
                 <div class="carousel-inner" style="height: 370px;">
                     <?php
@@ -197,8 +199,9 @@
             ## Slide Hot News 
             ##################
             -->
-            <div class="alert" id="box-express">
-                <div >
+            <div class="alert" id="box-express"
+                 style="border-bottom:<?php echo $style->color_navbar ?> solid 1px;">
+                <div class="container">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <!-- Wrapper for slides -->
@@ -242,21 +245,22 @@
                 </div>
             </div>
 
-            <div class="row" style=" margin: 0px;">
+            <div class="container" id="container"
+                 style="border:<?php echo $style->color_navbar ?> solid 1px; border-top: none;">
                 <!--
                 #####################
                 ## Menu Left 
                 #####################
                 -->
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <!--
-                    ################ 
-                    ## Menu And News 
-                    ################
-                    -->
-                    <div class="well BL" id="bg_gray" style=" background: none;">
+                <!--
+                ################ 
+                ## Menu And News 
+                ################
+                -->
+                <div id="controlmenu" style="display: none; background: #ededed;">
+                    <div class="well" style=" background: none;">
                         <h3><i class="fa fa-th-large"></i> เมนู</h3>
-                        <hr id="hr"/>
+                        <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>
                         <!--
                             #
                             #
@@ -264,228 +268,150 @@
                             #
                             #
                         -->
-
-                        <?php
-                        $menu = $this->tak->get_mas_menu();
-                        foreach ($menu->result() as $rs):
-                            $menu_model = new menu_model();
-                            //$color = $menu_model->get_color($rs->menu_color);
-                            ?>
-
+                        <div class="row">
                             <?php
-                            if ($rs->mas_status == '0') {
-                                ?>
-                                <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;">
-                                    <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
-                                        <div class="text-menu">
-                                            <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/>
-                                            <?= $rs->mas_menu ?>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <!-- ลิงค์ ข้างนอก -->
-                            <?php } else if ($rs->mas_status == '2') {
+                            $menu = $this->tak->get_mas_menu();
+                            foreach ($menu->result() as $rs):
+                                $menu_model = new menu_model();
+                                //$color = $menu_model->get_color($rs->menu_color);
                                 ?>
 
-                                <a href="<?php echo $rs->link_out; ?>" target="_blank" style=" text-decoration: none;">
-                                    <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
-                                        <div class="text-menu"> 
-                                            <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/>
-                                            <?= $rs->mas_menu ?>
-                                        </div>
-                                    </div></a>
-
-                                <!-- Droupdown -->
                                 <?php
-                            } else {
-                                ?>
+                                if ($rs->mas_status == '0') {
+                                    ?>
+                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
+                                        <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;">
+                                            <div id="submenu" class="btn btn-block hvr-trim" 
+                                                 style="background:<?php echo $rs->bgcolor ?>;
+                                                 color:<?php echo $rs->textcolor ?>; 
+                                                 border-radius:0px;">
+                                                <div class="text-menu">
+                                                    <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/>
+                                                    <?= $rs->mas_menu ?>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!-- ลิงค์ ข้างนอก -->
+                                <?php } else if ($rs->mas_status == '2') {
+                                    ?>
+                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
+                                        <a href="<?php echo $rs->link_out; ?>" target="_blank" style=" text-decoration: none;">
+                                            <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
+                                                <div class="text-menu"> 
+                                                    <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/>
+                                                    <?= $rs->mas_menu ?>
+                                                </div>
+                                            </div></a>
+                                    </div>
+                                    <!-- Droupdown -->
+                                    <?php
+                                } else {
+                                    ?>
+                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
+                                        <a href="<?php echo site_url('menu/submenu/' . $rs->id); ?>" style=" text-decoration: none;">
+                                            <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">                              
+                                                <div class="text-menu"> 
+                                                    <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/> <?= $rs->mas_menu ?>
+                                                </div>
+                                            </div></a>
+                                    </div>
+                                <?php } ?>
+                            <?php endforeach; ?>
 
-                                <a href="<?php echo site_url('menu/submenu/' . $rs->id); ?>" style=" text-decoration: none;">
-                                    <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">                              
+                            <!-- 
+                            #######################################
+                            ## Menu Down Load
+                            ########################################
+                            -->
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
+                                <a href="<?php echo site_url('formdownload'); ?>" style="text-decoration:">
+                                    <div id="submenu" class="btn btn-info btn-block hvr-trim" style="border-radius:0px;">
                                         <div class="text-menu"> 
-                                            <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/> <?= $rs->mas_menu ?>
+                                            <img src="<?= base_url() ?>icon_menu/folder-icon.png" style="height:32px;"/>
+                                            แบบฟอร์มต่าง ๆ 
                                         </div>
                                     </div></a>
-                            <?php } ?>
-                        <?php endforeach; ?>
-
-                        <!-- 
-                        #######################################
-                        ## Menu Down Load
-                        ########################################
-                        -->
-                        <a href="<?php echo site_url('formdownload'); ?>" style="text-decoration:">
-                            <div id="submenu" class="btn btn-info btn-block hvr-trim" style="border-radius:0px;">
-                                <div class="text-menu"> 
-                                    <img src="<?= base_url() ?>icon_menu/folder-icon.png" style="height:32px;"/>
-                                    แบบฟอร์มต่าง ๆ 
-                                </div>
-                            </div></a>
+                            </div>
+                        </div>
                         <!-- 
                         #######################################
                         ## END MENU GROUP
                         ########################################
                         -->
+                    </div>
+                </div> <!-- End ControlMenu -->
 
 
-                        <!-- 
-                        ####################
-                        ## ข่าว HOT
-                        ####################
-                        -->
-                        <h3><i class="fa fa-fire"></i> ข่าว HOT</h3>
-                        <hr id="hr"/>
-                        <div class="row">
-                            <?php
-                            $i = 0;
-                            $newsHot = $newsModel->hot();
-                            foreach ($newsHot->result() as $hotNews):
-                                $i++;
-                                ?>
-
+                <!-- 
+                ####################
+                ## ข่าวล่าสุด
+                ####################
+                -->
+                <div id="controlnew" style=" display: none;">
+                    <div class="well" style=" background: none;">
+                        <!-- Slide News -->
+                        <div id="menu_and_news" style="display: none; margin-top: 0px; padding-top: 0px;">
+                            <h3><i class="fa fa-newspaper-o"></i> ข่าวล่าสุด</h3>
+                            <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>
+                            <div class="row">
                                 <?php
-                                if ($i == '1') {
-                                    $images_host = $newsModel->get_first_images_news($hotNews->id);
+                                $i = 0;
+                                $homenews = $newsModel->get_news_limit(8);
+                                foreach ($homenews->result() as $new):
+                                    $i++;
                                     ?>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="container-card link-hot" style=" max-height: 170px;">
+                                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                        <div class="container-card" style="max-height: 200px;border:<?php echo $style->color_navbar ?> solid 1px;">
                                             <div class="img-wrapper">
-                                                <?php if (!empty($images_host)) { ?>
-                                                    <img src="<?php echo base_url() ?>upload_images/news/<?php echo $images_host; ?>" class="img-responsive img-polaroid" style="height:100px;"/>
+                                                <?php if (!empty($new->images)) { ?>
+                                                    <img src="<?php echo base_url() ?>upload_images/news/<?php echo $new->images; ?>" class="img-responsive img-polaroid" style="height:100px;"/>
                                                 <?php } else { ?>
                                                     <center>
                                                         <img src="<?php echo base_url() ?>images/News-Mic-iPhone-icon.jpg" class="img-responsive img_news" style="height:100px;"/>
                                                     </center>
                                                 <?php } ?>
                                             </div>
-                                            <p class="detail" style=" font-size: 12px; padding: 10px;">
-                                                <a href="<?php echo site_url('news/view/' . $hotNews->id) ?>">
-                                                    <i class="fa fa-fire"></i>
-                                                    <?php
-                                                    //$this->session->userdata('width');
-                                                    $text = strlen($hotNews->titel);
-                                                    if ($text > 160) {
-                                                        //echo iconv_substr($news->titel,'0','100')."...";
-                                                        if ($this->session->userdata('width') > 1000 || $this->session->userdata('width') <= 768) {
-                                                            print mb_substr($hotNews->titel, 0, 30, 'UTF-8') . "...";
-                                                        } else {
-                                                            echo $hotNews->titel;
-                                                        }
+                                            <p class="detail" style=" font-size: 12px;">
+                                                <?php
+                                                //$this->session->userdata('width');
+                                                $text = strlen($new->titel);
+                                                if ($text > 160) {
+                                                    //echo iconv_substr($news->titel,'0','100')."...";
+                                                    if ($this->session->userdata('width') > 1000 || $this->session->userdata('width') <= 768) {
+                                                        print mb_substr($new->titel, 0, 30, 'UTF-8') . "...";
                                                     } else {
-                                                        echo $hotNews->titel;
+                                                        echo $new->titel;
                                                     }
-                                                    ?></a>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
-                                        <div class="container-card link-hot" style=" max-height: 60px;">
-                                            <p class="detail" style=" font-size: 12px; padding: 10px;">
-                                                <a href="<?php echo site_url('news/view/' . $hotNews->id) ?>">
-                                                    <i class="fa fa-fire"></i>
-                                                    <?php
-                                                    //$this->session->userdata('width');
-                                                    $text = strlen($hotNews->titel);
-                                                    if ($text > 160) {
-                                                        //echo iconv_substr($news->titel,'0','100')."...";
-                                                        if ($this->session->userdata('width') > 1000 || $this->session->userdata('width') <= 768) {
-                                                            print mb_substr($hotNews->titel, 0, 30, 'UTF-8') . "...";
-                                                        } else {
-                                                            echo $hotNews->titel;
-                                                        }
-                                                    } else {
-                                                        echo $hotNews->titel;
-                                                    }
-                                                    ?></a>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
-                            <?php endforeach; ?>
-                        </div>
-                        <!-- End HOT News -->
-
-                    </div> <!-- End Well -->
-
-
-                </div>
-                <!--
-                #####################
-                ## Content right 
-                #####################
-                -->
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 BR">
-                    <!-- 
-                    ####################
-                    ## ข่าวล่าสุด
-                    ####################
-                    -->
-                    <!-- Slide News -->
-                    <div id="menu_and_news" style="display: none; margin-top: 0px; padding-top: 0px;">
-                        <h3><i class="fa fa-newspaper-o"></i> ข่าวล่าสุด</h3>
-                        <hr id="hr"/>
-                        <div class="row">
-                            <?php
-                            $i = 0;
-                            $homenews = $newsModel->get_news_limit();
-                            foreach ($homenews->result() as $new):
-                                $i++;
-                                ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                    <div class="container-card" style=" max-height: 200px;">
-                                        <div class="img-wrapper">
-                                            <?php if (!empty($new->images)) { ?>
-                                                <img src="<?php echo base_url() ?>upload_images/news/<?php echo $new->images; ?>" class="img-responsive img-polaroid" style="height:100px;"/>
-                                            <?php } else { ?>
-                                                <center>
-                                                    <img src="<?php echo base_url() ?>images/News-Mic-iPhone-icon.jpg" class="img-responsive img_news" style="height:100px;"/>
-                                                </center>
-                                            <?php } ?>
-                                        </div>
-                                        <p class="detail" style=" font-size: 12px;">
-                                            <?php
-                                            //$this->session->userdata('width');
-                                            $text = strlen($new->titel);
-                                            if ($text > 160) {
-                                                //echo iconv_substr($news->titel,'0','100')."...";
-                                                if ($this->session->userdata('width') > 1000 || $this->session->userdata('width') <= 768) {
-                                                    print mb_substr($new->titel, 0, 30, 'UTF-8') . "...";
                                                 } else {
                                                     echo $new->titel;
                                                 }
-                                            } else {
-                                                echo $new->titel;
-                                            }
-                                            ?><br/>
-                                        </p>
-                                        <a href="<?php echo site_url('news/view/' . $new->id) ?>">
-                                            <button type="button" class="btn btn-danger btn-xs" id="btn-card"> อ่านข่าว ...</button>
-                                        </a>
+                                                ?><br/>
+                                            </p>
+                                            <a href="<?php echo site_url('news/view/' . $new->id) ?>">
+                                                <button type="button" class="btn btn-danger btn-xs" id="btn-card"> อ่านข่าว ...</button>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="row" style=" clear: both;">
+                                <a href="<?php echo site_url('news') ?>" class=" pull-right" style=" margin-right: 20px;">
+                                    <button type="button" class="btn btn-default btn-sm" style=" margin-right: 0px;">ข่าวทั้งหมด <i class="fa fa-arrow-circle-o-right"></i></button>
+                                </a>
+                            </div>
+                            <div class="bottom-line"></div>
                         </div>
-                        <div class="row" style=" clear: both;">
-                            <a href="<?php echo site_url('news') ?>" class=" pull-right" style=" margin-right: 20px;">
-                                <button type="button" class="btn btn-default btn-sm" style=" margin-right: 0px;">ข่าวทั้งหมด <i class="fa fa-arrow-circle-o-right"></i></button>
-                            </a>
-                        </div>
-                        <div class="bottom-line"></div>
+                        <!-- EndSlide News -->
                     </div>
-                    <!-- EndSlide News -->
-
-                    <!-- 
-                     ################
-                     ## Content Page
-                     ################
-                    
-                    -->
-                    <div id="tooplate_content">
+                </div> <!-- Endcontrolnews-->
+                <!-- 
+                 ################
+                 ## Content Page
+                 ################
+                -->
+                <div id="tooplate_content">
+                    <div class="well" style=" background: none;">
                         <?php
                         if ($detail == "") {
                             $this->load->view($page . ".php");
@@ -493,104 +419,106 @@
                             $this->load->view($page . ".php", $detail);
                         }
                         ?>
-                    </div> 
-                    <!--
-                    ####################
-                    ## end of content 
-                    ####################
-                    -->
-
-                </div>
-            </div>
-            <!--
-            ####################
-            ## Album
-            ####################
-            -->
-
-            <div id="main-album" style=" display: none;">
-                <div class="alert" id="bg_gray" style="width:100%; border-radius:0px; margin-bottom:0px;">
-                    <div  style=" padding-left:0px;">
-                        <h3><i class="fa fa-file-image-o"></i> รูปภาพ / กิจกรรม</h3>
-                        <hr id="hr"/>
-                        <div class="slider5" style="margin-bottom:0px; padding-bottom:0px;">
-                            <?php
-                            $photo = $photoModel->album_limit(10);
-                            foreach ($photo->result() as $albums):
-                                $firstAlbum = $photoModel->get_first_album($albums->id);
-                                ?>
-
-                                <a href="<?php echo site_url('photo/gallery/' . $albums->id) ?>" class="hover14">
-                                    <div class="slide">
-                                        <div class="container-card" style="height:160px; text-align: center; box-shadow:none; margin-bottom:0px;">
-                                            <figure>
-                                                <div class="img-wrapper">
-                                                    <img src="<?php echo base_url() ?>upload_images/photo/<?php echo $firstAlbum ?>" class="img-responsive" style="height:160px;" title="<?php echo $albums->title ?>"/>
-                                                </div>
-                                            </figure>
-                                        </div>
-                                    </div>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                        <center><br/>
-                            <a href="<?php echo site_url('photo/page') ?>">
-                                <button type="button" class="btn btn-info btn-sm">ดูทั้งหมด ...</button></a>
-                        </center>
                     </div>
-                </div>
+                </div> 
 
-            </div>
-
-            <!--
-           ####################
-           ## Menu System
-           ####################
-            -->
-
-            <div id="main-menu-system" style=" display: none;">
-                <div class="well" id="box-menu-system"
-                     style="background:<?php echo $style->color_head ?>; border-radius:0px;">
-                    <div class="bottom-line"></div>
-                    <div style="margin-top: 0px;">
-                        <div  style=" margin-bottom: 30px;">
-                            <h3 style="color:<?php echo $style->color_text ?>; text-shadow:none;"><i class="fa fa-th"></i> ระบบงาน</h3>
-                            <hr id="hr" style="border:<?php echo $style->color_text ?> solid 2px;"/>
-                            <div class="row">
-
-                                <!-- Menu Program -->
+                <!--
+    ####################
+    ## Album
+    ####################
+                -->
+                <div id="main-album" style=" display: none;">
+                    <div class="alert" id="bg_gray" style="width:100%; border-radius:0px; margin-bottom:0px;">
+                        <div  style=" padding-left:0px;">
+                            <h3><i class="fa fa-file-image-o"></i> รูปภาพ / กิจกรรม</h3>
+                            <hr id="hr"/>
+                            <div class="slider5" style="margin-bottom:0px; padding-bottom:0px;">
                                 <?php
-                                $menu_system = $this->tak->get_menu_system();
-                                foreach ($menu_system->result() as $mm):
+                                $photo = $photoModel->album_limit(10);
+                                foreach ($photo->result() as $albums):
+                                    $firstAlbum = $photoModel->get_first_album($albums->id);
                                     ?>
-                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                        <a href="<?= $mm->link ?>" target="_blank" style=" text-decoration: none;">
-                                            <div class="hvr-grow" style=" width: 100%;">
-                                                <div class="container-card" style="max-height: 150px; text-align: center;" id="menu-hover">
+
+                                    <a href="<?php echo site_url('photo/gallery/' . $albums->id) ?>" class="hover14">
+                                        <div class="slide">
+                                            <div class="container-card" style="height:160px; text-align: center; box-shadow:none; margin-bottom:0px;">
+                                                <figure>
                                                     <div class="img-wrapper">
-                                                        <img src="<?php echo base_url() ?>icon_menu/<?php echo $mm->system_images ?>" class="img-responsive" style="height:100px;"/>
+                                                        <img src="<?php echo base_url() ?>upload_images/photo/<?php echo $firstAlbum ?>" class="img-responsive" style="height:160px;" title="<?php echo $albums->title ?>"/>
                                                     </div>
-                                                    <p class="detail" style=" margin: 0px; padding: 2px; font-weight: bold; padding-top: 10px;">
-                                                        <?php echo $mm->system_title ?><br/>
-                                                    </p>
-                                                </div>
+                                                </figure>
                                             </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 <?php endforeach; ?>
                             </div>
-
+                            <center><br/>
+                                <a href="<?php echo site_url('photo/page') ?>">
+                                    <button type="button" class="btn btn-info btn-sm">ดูทั้งหมด ...</button></a>
+                            </center>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!--
-            ########################
-            ## Footer 
-            ########################
-            -->
-            <nav class="navbar navbar-inverse" role="navigation" style="background: <?php echo $style->color_navbar; ?>" id="footer">
+                <!--
+####################
+## Menu System
+####################
+                -->
+
+                <div id="main-menu-system" style=" display: none;">
+                    <div class="well" id="box-menu-system"
+                         style="border-radius:0px; background: none;">
+                        <div class="bottom-line"></div>
+                        <div style="margin-top: 0px;">
+                            <div style=" margin-bottom: 30px;">
+                                <h3 style="color:#ff6600; text-shadow:none;"><i class="fa fa-th"></i> ระบบงาน</h3>
+                                <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>
+                                <div class="row">
+
+                                    <!-- Menu Program -->
+                                    <?php
+                                    $menu_system = $this->tak->get_menu_system();
+                                    foreach ($menu_system->result() as $mm):
+                                        ?>
+                                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                            <a href="<?= $mm->link ?>" target="_blank" style=" text-decoration: none;">
+                                                <div class="hvr-grow" style=" width: 100%;">
+                                                    <div class="container-card" 
+                                                         style="max-height: 150px; text-align: center;" 
+                                                         id="menu-hover">
+                                                        <div class="img-wrapper">
+                                                            <img src="<?php echo base_url() ?>icon_menu/<?php echo $mm->system_images ?>" class="img-responsive" style="height:100px;"/>
+                                                        </div>
+                                                        <p class="detail" style=" margin: 0px; padding: 2px; font-weight: bold; padding-top: 10px;">
+                                                            <?php echo $mm->system_title ?><br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                ####################
+                ## end of content 
+                ####################
+                -->
+            </div> <!-- End Container -->
+        </div> <!-- End #maincontainer -->
+        <!--
+        ########################
+        ## Footer 
+        ########################
+        -->
+        <nav class="navbar navbar-inverse" role="navigation" style="background: <?php echo $style->color_navbar; ?>" id="footer">
+            <div class="container">
                 <div  style="color:<?php echo $style->color_text ?>;">
                     <?php echo $style->footer ?>
                     <hr style="border-top:solid 1px <?php echo $style->color_head ?>;"/>
@@ -600,21 +528,24 @@
                         จำนวนผู้เยี่ยมชม <span class="badge"><?php echo $this->counter_model->counter(); ?></span> คน
                     </div>
                 </div>
-            </nav>
-            <nav class="navbar navbar-inverse" role="navigation" id="footer-credit">
+            </div>
+        </nav>
+        <nav class="navbar navbar-inverse" role="navigation" id="footer-credit">
+            <div class=" container">
                 <div style="padding-top:20px;">
                     <div style="font-size:10px; color:<?php echo $style->color_text ?>; text-align:center;">
                         &copy; Create By The Assembler Themes | Kimniyom | Mini CMS
                         <a href="http://www.theassembler.net" target="_blank">www.theassembler.net</a>
                     </div>
                 </div>
-            </nav>
-            <!--
-            #####################
-            ## EndFooter 
-            #####################
-            -->
-        </div> <!-- End Container -->
+            </div>
+        </nav>
+        <!--
+        #####################
+        ## EndFooter 
+        #####################
+        -->
+
 
         <!-- Script to Activate the Carousel -->
         <script>

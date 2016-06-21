@@ -5,11 +5,14 @@
     foreach ($themes->result() as $rs): $i++;
         ?>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <center>
+                <p><?php echo $rs->template?></p>
+            </center>
             <a class="hover14">
-                <div class="container-card" style="height:200px;">
+                <div class="container-card" style="height:400px;">
                     <figure>
                         <div class="img-wrapper">
-                            <img src="<?php echo base_url() ?>themes/<?php echo $rs->template ?>/images/ex.jpg" class="img-responsive img-polaroid" style="height:200px;"/>
+                            <img src="<?php echo base_url() ?>themes/<?php echo $rs->template ?>/images/ex.jpg" class="img-responsive img-polaroid" style="height:400px;"/>
                         </div>
                     </figure>
                     <div id="btn-card">
@@ -38,10 +41,12 @@
     function delete_template(id) {
         var r = confirm("คุณแน่ใจหรือไม่ ... ?");
         if (r == true) {
-            var url = "<?php echo site_url('backend/template/delete') ?>";
+            var url = "<?php echo site_url('backend/template/deletetemplate') ?>";
             var id = id;
             var data = {id: id};
             $.post(url, data, function (success) {
+                //alert(success);
+                
                 swal({title: "Success", text: "ลบข้อมูลแล้ว ...", type: "success",
                     showCancelButton: false,
                     loseOnConfirm: true,
@@ -49,6 +54,7 @@
                         function () {
                             window.location.reload();
                         });
+                        
             });
         }
     }

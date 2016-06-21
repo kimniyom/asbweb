@@ -27,12 +27,19 @@
         <group name="yii">
             <file>file:/Applications/MAMP/htdocs/asbweb/application/views/myhome.php</file>
             <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/users.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/themes/asborange/js/system.js</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/asborange/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/gallery/create_gallery.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/photo.php</file>
             <file>file:/Applications/MAMP/htdocs/asbweb/themes/asborange/css/system.css</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/themes/asborange/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/news_model.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/themes/asborange/js/system.js</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/template/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/template.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/asborange/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/template/themes.php</file>
             <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/site.php</file>
             <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/users.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/news_model.php</file>
+            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/album/index.php</file>
         </group>
     </open-files>
 </project-private>

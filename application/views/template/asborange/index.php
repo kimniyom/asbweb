@@ -199,7 +199,8 @@
             ## Slide Hot News 
             ##################
             -->
-            <div class="alert" id="box-express">
+            <div class="alert" id="box-express"
+                 style="border-bottom:<?php echo $style->color_navbar ?> solid 1px;">
                 <div class="container">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -256,7 +257,7 @@
                 ## Menu And News 
                 ################
                 -->
-                <div id="controlmenu" style=" display: none; background: #ededed;">
+                <div id="controlmenu" style="display: none; background: #ededed;">
                     <div class="well" style=" background: none;">
                         <h3><i class="fa fa-th-large"></i> เมนู</h3>
                         <hr id="hr" style="border:<?php echo $style->color_navbar ?> solid 1px;"/>

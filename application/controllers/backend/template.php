@@ -116,4 +116,19 @@ class template extends CI_Controller {
         }
     }
 
+    public function Deletetemplate() {
+        $id = $this->input->post('id');
+        $sql = "SELECT * FROM template WHERE id = '$id' ";
+        $rs = $this->db->query($sql)->row();
+
+        if (!empty($rs->template)) {
+            $dirtemplate = "themes/" . $rs->template;
+            exec("rm -r -f $dirtemplate");
+            $dirindex = "application/views/template/" . $rs->template;
+            exec("rm -r -f $dirindex");
+
+            $this->db->delete("template", "id = '$id' ");
+        }
+    }
+
 }

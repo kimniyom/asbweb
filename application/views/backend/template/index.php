@@ -16,6 +16,8 @@
                 if (data == 'error') {
                     $("#status-install").show();
                     $("#log").append("<font style='color:red;'>! มีชื่อ Template อยู่ในระบบแล้ว ...</font><br/> ");
+                } else {
+                    window.location.reload();
                 }
                 //get_background();  
             }

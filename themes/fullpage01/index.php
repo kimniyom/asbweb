@@ -23,7 +23,11 @@
         $photoModel = new photo_model();
         $style = $barmodel->get_style();
         $navbar = $barmodel->get_navbarmenu_all();
+        $templateModel = $this->template_model->get_template();
+        $path = $templateModel['path'];
         ?>
+
+
 
         <link rel="shortcut icon" href="<?php echo base_url() ?>upload_images/logo/<?php echo $style->logo ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,21 +47,21 @@
             #nav-bar ul li a:focus{ background: <?php echo $style->color_head ?>;}
         </style>
         <!-- New Themes -->
-        <link href="<?php echo base_url() ?>themes/2016/css/system.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url() ?><?php echo $path ?>/css/system.css" rel="stylesheet" type="text/css" />
         <script src="<?php echo base_url() ?>js/jquery-1.11.3.min.js" type="text/javascript"></script>
 
         <!-- Bootstrap 3-->
-        <link href="<?php echo base_url() ?>themes/2016/css/bootstrap-flatly.css" rel="stylesheet" type="text/css" />
-        <script src="<?php echo base_url() ?>themes/2016/js/bootstrap.js" type="text/javascript"></script>
-        <link href="<?php echo base_url() ?>themes/2016/css/half-slider.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url() ?><?php echo $path ?>/css/bootstrap-flatly.css" rel="stylesheet" type="text/css" />
+        <script src="<?php echo base_url() ?><?php echo $path ?>/js/bootstrap.js" type="text/javascript"></script>
+        <link href="<?php echo base_url() ?><?php echo $path ?>/css/half-slider.css" rel="stylesheet" type="text/css" />
 
         <!-- Icon aware-some -->
         <link href="<?php echo base_url() ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 
         <!-- Jquery Library -->
         <script src="<?php echo base_url() ?>js/library/configweb.js" type="text/javascript"></script>
-        <script src="<?php echo base_url() ?>themes/2016/js/system.js" type="text/javascript"></script>
-        
+        <script src="<?php echo base_url() ?><?php echo $path ?>/js/system.js" type="text/javascript"></script>
+
         <!-- Datatable -->
         <link rel="stylesheet" href="<?= base_url() ?>assets/DataTables-1.10.10/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <script src="<?= base_url() ?>assets/DataTables-1.10.10/media/js/jquery.dataTables.js" type="text/javascript"></script>
@@ -76,7 +80,7 @@
         <script src="<?php echo base_url() ?>assets/fancyBox2.1.5/source/jquery.fancybox.js"></script>
 
         <!-- images hover effect -->
-        <link href="<?php echo base_url() ?>themes/2016/css/images-hover-effect.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url() ?><?php echo $path ?>/css/images-hover-effect.css" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -412,7 +416,7 @@
         -->
         <div id="tooplate_content">
             <div class=" container">
-                
+
                 <?php
                 if ($detail == "") {
                     $this->load->view($page . ".php");
