@@ -54,13 +54,14 @@ class banner extends CI_Controller {
     }
 
     public function upload() {
+        //$targetFolder = base_url() . "images/images_slide";
         $targetFolder = 'images/images_slide'; // Relative to the root
 
         if (!empty($_FILES)) {
             $tempFile = $_FILES['Filedata']['tmp_name'];
             $FULLNAME = $_FILES['Filedata']['name'];
             $type = substr($FULLNAME, -3);
-            $Name = "banner_" . random_string('alnum',30) . "." . $type;
+            $Name = "banner_" . random_string('alnum', 30) . "." . $type;
             $targetFile = $targetFolder . '/' . $Name;
             //$targetFile = $targetFolder . '/' . $Name;
             // Validate the file type
