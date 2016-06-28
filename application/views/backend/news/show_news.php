@@ -70,6 +70,7 @@
             return false;
         }
         var data = {
+            groupnews: $("#groupID").val(),
             new_id: $("#new_id").val(),
             title: $("#title").val(),
             detail: detail
@@ -124,17 +125,20 @@ $model = new takmoph_libraries();
 
 $list = array(
     array('url' => 'takmoph_admin', 'label' => 'เมนูหลัก'),
+    array('url' => 'backend/groupnews/index/', 'label' => "กลุ่มข่าวประชาสัมพันธ์"),
         //array('url' => '', 'label' => 'menu2')
 );
 
-$active = $head;
+$active = $groupnews->groupname;
 echo $model->breadcrumb_backend($list, $active);
 ?>
 
 <br/>
 <!-- Dialog Insert News -->
 
-<h3><i class="fa fa-newspaper-o"></i> <?= $head ?></h3>
+<input type="hidden" id="groupID" value="<?php echo $groupnews->id ?>"/>
+
+<h3><i class="fa fa-newspaper-o"></i> <?= $groupnews->groupname ?></h3>
 <hr/>
 <button type="button" class="btn btn-success pull-right" id="add_new">
     <span class=" glyphicon glyphicon-plus"></span> เพิ่มข่าวประชาสัมพันธ์
@@ -143,8 +147,8 @@ echo $model->breadcrumb_backend($list, $active);
 <table width="100%" id="tb_mas_menu" class="table">
     <thead>
         <tr style=" background: #FFF;">
-            <th align="left">#</th>
-            <th align="left">รหัส</th>
+            <th align="left" style=" width: 5%;">#</th>
+            <th align="left" style=" width: 5%;">รหัส</th>
             <th align="left">หัวข้อ</th>
             <?php if ($this->session->userdata['status'] == "S") { ?>
                 <th>FlagDelete</th>
@@ -175,7 +179,7 @@ echo $model->breadcrumb_backend($list, $active);
                     <td><?= $rs->flag_delete_user; ?></td>
                 <?php } ?>
 
-                <td>
+                <td style=" width: 10%;">
                     <?php if ($rs->flag_delete == '1') { ?>
                         <p style="color:red;">ข่าวโดนลบ</p>
                     <?php } else { ?>
@@ -185,7 +189,7 @@ echo $model->breadcrumb_backend($list, $active);
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="<?php echo site_url('backend/news/from_upload_images_news/' . $rs->id); ?>">
+                                    <a href="<?php echo site_url('backend/news/from_upload_images_news/' . $rs->id . '/' . $groupnews->id); ?>">
                                         <span class=" glyphicon glyphicon-picture"></span> รูปภาพ</a>
                                 </li>
                                 <li>

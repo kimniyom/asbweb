@@ -58,8 +58,7 @@ $model = new takmoph_libraries();
 
 $list = array(
     array('url' => 'takmoph_admin', 'label' => 'เมนูหลัก'),
-    array('url' => 'backend/groupnews/index', 'label' => 'กลุ่มข่าวประชาสัมพันธ์'),
-    array('url' => 'backend/news/get_news/' . $groupnews->id, 'label' => $groupnews->groupname)
+    array('url' => 'backend/news/get_news', 'label' => 'ข่าว')
 );
 
 $active = $head;

@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * CreateModule : 28/06/2559
+ * Author By kmniyom
+ * Email : kimniyomclub@gmail.com
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class news extends CI_Controller {
+class groupnews extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -30,67 +35,75 @@ class news extends CI_Controller {
         }
     }
 
-    public function get_news($groupID = null) {
-        $GroupNews = $this->groupnews->get_groupnews_where($groupID);
-        $data['groupnews'] = $GroupNews;
-        $data['news'] = $this->news->get_news_ingroup($data['groupnews']->id);
-        $page = "backend/news/show_news";
-        $head = "ข่าวประชาสัมพันธ์";
+    public function index() {
+        $data['groupnews'] = $this->groupnews->get_groupnews_all();
+        $page = "backend/groupnews/index";
+        $head = "กลุ่มข่าวประชาสัมพันธ์";
 
         $this->output($data, $page, $head);
     }
 
-    public function save_news() {
+    public function get_news() {
+        $data['news'] = $this->groupnews->get_groupnews_all();
+        $page = "backend/news/show_news";
+        $head = "กลุ่มข่าวประชาสัมพันธ์";
+
+        $this->output($data, $page, $head);
+    }
+
+    public function save() {
+        $level = $this->tak->max_id("groupnews", "level");
         $data = array(
-            'groupnews' => $this->input->post('groupnews'),
-            'id' => $this->input->post('new_id'),
-            'titel' => $this->input->post('title'),
-            'detail' => $this->input->post('detail'),
-            'user_id' => $this->session->userdata('user_id'),
-            'date' => date('Y-m-d H:i:s')
+            'groupname' => $this->input->post('groupname'),
+            'create_date' => date('Y-m-d H:i:s'),
+            'level' => $level
         );
-        $this->db->insert('tb_news', $data);
+        $this->db->insert('groupnews', $data);
 
         //echo $this->tak->redir('backend/news/from_upload_images_news/' . $_POST['new_id']);
     }
 
-    public function from_edit_news() {
-        $new_id = $_POST['id'];
-        $data['news'] = $this->news->get_news_where($new_id);
-        $this->load->view("backend/news/from_edit_news", $data);
+    public function update() {
+        $Id = $this->input->post('id');
+        $data['groupnews'] = $this->groupnews->get_groupnews_where($Id);
+        $this->load->view("backend/groupnews/update", $data);
         //$head = "แก้ไขข้อมูลข่าว";
         //$this->output($data, $page, $head);
         //echo json_encode($json);
     }
 
-    public function edit_news() {
-        $data_update = array(
-            'titel' => $_POST['_title'],
-            'detail' => $_POST['_detail']
+    public function save_update() {
+        $id = $this->input->post('id');
+        $columns = array(
+            'groupname' => $this->input->post('groupname')
         );
-        $this->db->where('id', $_POST['_new_id']);
-        $this->db->update('tb_news', $data_update);
+        $this->db->where('id', $id);
+        $this->db->update('groupnews', $columns);
         //echo $this->tak->redir('takmoph_admin/get_news/');
     }
 
-    public function delete_news() {
+    public function delete() {
 
-        $new_id = $this->input->post('news_id');
+        $groupID = $this->input->post('id');
+        $groupnews = $this->news->get_news_ingroup($groupID);
+        foreach ($groupnews->result() as $rs):
+            $new_id = $rs->id;
+            $sql = "SELECT * FROM images_news WHERE new_id = '" . $new_id . "'";
+            $result = $this->db->query($sql);
+            if ($result->num_rows() > 0) {
+                foreach ($result->result() as $rss):
+                    unlink('upload_images/news/' . $rss->images);
+                endforeach;
+            }
+            $this->db->where('new_id', $new_id);
+            $this->db->delete('images_news');
+        endforeach;
 
-        $sql = "SELECT * FROM images_news WHERE new_id = '" . $new_id . "'";
-        $result = $this->db->query($sql);
-        if ($result->num_rows() > 0) {
-            foreach ($result->result() as $rs):
-                unlink('upload_images/news/' . $rs->images);
-            endforeach;
-        }
-
-        $this->db->where('new_id', $new_id);
-        $this->db->delete('images_news');
-
-        $this->db->where('id', $new_id);
+        $this->db->where('groupnews', $groupID);
         $this->db->delete('tb_news');
 
+        $this->db->where('id', $groupID);
+        $this->db->delete('groupnews');
         //echo $this->tak->redir('backend/news/get_news/');
     }
 
@@ -106,9 +119,7 @@ class news extends CI_Controller {
         $this->db->update("tb_news", $column);
     }
 
-    public function from_upload_images_news($new_id = '', $groupID = null) {
-        $GroupNews = $this->groupnews->get_groupnews_where($groupID);
-        $data['groupnews'] = $GroupNews;
+    public function from_upload_images_news($new_id = '') {
 
         $new_model = new news_model();
         $data['news'] = $new_model->get_news_where($new_id);
@@ -167,6 +178,38 @@ class news extends CI_Controller {
                 echo 'Invalid file type.';
             }
         }
+    }
+
+    public function set_level() {
+        $id = $this->input->post('id');
+        $level = $this->input->post('level');
+
+        $columns = array(
+            "level" => $level
+        );
+
+        $this->db->where("id", $id);
+        $this->db->update("groupnews", $columns);
+
+        //echo "ID = ".$id." LEVEL = ".$level;
+    }
+
+    public function set_active() {
+        $id = $this->input->post('id');
+        $active = $this->input->post('active');
+
+        $columns = array("active" => $active);
+        $this->db->where("id", $id);
+        $this->db->update("groupnews", $columns);
+    }
+
+    public function set_unactive() {
+        $id = $this->input->post('id');
+        $active = $this->input->post('active');
+
+        $columns = array("active" => $active);
+        $this->db->where("id", $id);
+        $this->db->update("groupnews", $columns);
     }
 
 }

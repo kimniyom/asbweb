@@ -14,7 +14,7 @@ class news_model extends CI_Model {
     }
 
     function get_news_limit($limit = null) {
-        if(empty($limit)){
+        if (empty($limit)) {
             $limits = 6;
         } else {
             $limits = $limit;
@@ -32,6 +32,14 @@ class news_model extends CI_Model {
         $sql = "SELECT n.*,m.name,m.lname
         FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
         ORDER BY date DESC";
+        return $this->db->query($sql);
+    }
+
+    function get_news_ingroup($groupnews = null) {
+        $sql = "SELECT n.*,m.name,m.lname
+        FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
+        WHERE n.groupnews = '$groupnews'
+        ORDER BY n.date DESC";
         return $this->db->query($sql);
     }
 
@@ -61,49 +69,49 @@ class news_model extends CI_Model {
         return $images;
     }
 
-    function max_read($newsId = null){
+    function max_read($newsId = null) {
         $sql = "SELECT MAX(views) AS total FROM tb_news WHERE id = '$newsId'";
         $rs = $this->db->query($sql)->row();
         return $rs->total;
     }
 
-    function near(){
+    function near() {
         $sql = "SELECT n.*,m.name,m.lname
         FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
         ORDER BY date DESC LIMIT 5";
         return $this->db->query($sql);
     }
 
-    function hot(){
+    function hot() {
         $sql = "SELECT n.*,m.name,m.lname
         FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
         ORDER BY n.views DESC LIMIT 6";
         return $this->db->query($sql);
     }
 
-    function last_news(){
+    function last_news() {
         $sql = "SELECT n.*,m.name,m.lname
         FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
         ORDER BY n.id DESC LIMIT 6";
         return $this->db->query($sql);
     }
 
-    function count(){
-      return $this->db->count_all("tb_news");
+    function count() {
+        return $this->db->count_all("tb_news");
     }
 
     // Fetch data according to per_page limit.
     public function fetch_data($limit, $start) {
-      if($start != ''){
-        $pagestart = $start;
-      } else {
-        $pagestart = 0;
-      }
-      $sql = "SELECT n.*,m.name,m.lname
+        if ($start != '') {
+            $pagestart = $start;
+        } else {
+            $pagestart = 0;
+        }
+        $sql = "SELECT n.*,m.name,m.lname
       FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
       ORDER BY date DESC
       LIMIT $pagestart,$limit";
-      return $this->db->query($sql);
+        return $this->db->query($sql);
     }
 
 }
