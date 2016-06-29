@@ -24,23 +24,6 @@
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/models/menu_model.php</file>
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/views/admin/show_dengue.php</file>
         </group>
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/myhome.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/users.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/template_model.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/20160205/main.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/20160205/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/gallery/create_gallery.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/photo.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/news_model.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/homepage.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/template/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/template.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/template/themes.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/fullpage01/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/site.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/users.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/album/index.php</file>
-        </group>
+        <group name="yii"/>
     </open-files>
 </project-private>
