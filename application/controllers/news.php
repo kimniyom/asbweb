@@ -10,6 +10,7 @@ class news extends CI_Controller {
         $this->load->model('takmoph_model', 'tak');
         $this->load->model('upload_model', 'upload');
         $this->load->model('news_model', 'news');
+        $this->load->model('groupnews_model', 'groupnews');
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->library('pagination');

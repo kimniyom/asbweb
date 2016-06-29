@@ -27,6 +27,22 @@ class news_model extends CI_Model {
                     LIMIT $limits ";
         return $this->db->query($sql);
     }
+    
+    function get_news_limit_group($group = null,$limit = null) {
+        if (empty($limit)) {
+            $limits = 6;
+        } else {
+            $limits = $limit;
+        }
+        $this->db->cache_on();
+        $sql = "SELECT *
+                    FROM tb_news N LEFT JOIN (SELECT MAX(id),new_id,images FROM images_news GROUP BY new_id) IM ON N.id = IM.new_id
+                    INNER JOIN mas_user M ON N.user_id = M.user_id
+                    WHERE N.groupnews = '$group' 
+                    ORDER BY N.id DESC
+                    LIMIT $limits ";
+        return $this->db->query($sql);
+    }
 
     function get_news() {
         $sql = "SELECT n.*,m.name,m.lname

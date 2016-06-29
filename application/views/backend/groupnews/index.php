@@ -122,6 +122,20 @@ echo $model->breadcrumb_backend($list, $active);
                 <div class="modal-body">
                     <label>ชื่อกลุ่ม</label>
                     <input type="text" id="groupname" name="groupname" style="width:98%;" required="required" class="form-control input-mini"/>
+                    <br/>
+                    <label>สีหัวข้อ</label>
+                    <input type="color" id="headcolor" value="#eeeeee"/>
+                    <label>สีหัวพื้นหลัง</label>
+                    <input type="color" id="background" value="#FFFFFF"/>
+                    <br/>
+                    <label>จำนวน Column</label>
+                    <select id="column" class="form-control">
+                        <option value="3">4</option>
+                        <option value="12">1</option>
+                        <option value="6">2</option>
+                        <option value="4">3</option>
+                    </select>
+
                     <label>ผู้เผยแพร่</label>
                     <input type="text" id="user_" name="user_" style="width:98%;"  class="form-control input-mini"
                            value="<?= $this->session->userdata('name') . '-' . $this->session->userdata('lname'); ?>" readonly="readonly"/>
@@ -158,8 +172,14 @@ echo $model->breadcrumb_backend($list, $active);
 <script type="text/javascript">
     function save() {
         var groupname = $("#groupname").val();
+        var headcolor = $("#headcolor").val();
+        var background = $("#background").val();
+        var column = $("#column").val();
         var data = {
-            groupname: groupname
+            groupname: groupname,
+            headcolor: headcolor,
+            background: background,
+            column: column
         };
 
         if (groupname == "") {

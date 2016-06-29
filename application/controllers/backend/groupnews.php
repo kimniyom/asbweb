@@ -53,8 +53,13 @@ class groupnews extends CI_Controller {
 
     public function save() {
         $level = $this->tak->max_id("groupnews", "level");
+        $column = $this->input->post('column');
+        //$columns = $this->getcolumns($column);
         $data = array(
             'groupname' => $this->input->post('groupname'),
+            'headcolor' => $this->input->post('headcolor'),
+            'background' => $this->input->post('background'),
+            'column' => $column,
             'create_date' => date('Y-m-d H:i:s'),
             'level' => $level
         );
@@ -74,11 +79,16 @@ class groupnews extends CI_Controller {
 
     public function save_update() {
         $id = $this->input->post('id');
-        $columns = array(
-            'groupname' => $this->input->post('groupname')
+        $column = $this->input->post('column');
+        //$columns = $this->getcolumns($column);
+        $datas = array(
+            'groupname' => $this->input->post('groupname'),
+            'headcolor' => $this->input->post('headcolor'),
+            'background' => $this->input->post('background'),
+            'column' => $column
         );
         $this->db->where('id', $id);
-        $this->db->update('groupnews', $columns);
+        $this->db->update('groupnews', $datas);
         //echo $this->tak->redir('takmoph_admin/get_news/');
     }
 
@@ -210,6 +220,20 @@ class groupnews extends CI_Controller {
         $columns = array("active" => $active);
         $this->db->where("id", $id);
         $this->db->update("groupnews", $columns);
+    }
+
+    public function getcolumns($columns = null) {
+        if ($columns == 1) {
+            $c = "12";
+        } else if ($columns == 2) {
+            $c = "6";
+        } else if ($columns == 3) {
+            $c = "4";
+        } else {
+            $c = "4";
+        }
+
+        return $c;
     }
 
 }

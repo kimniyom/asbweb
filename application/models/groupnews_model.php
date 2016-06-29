@@ -37,6 +37,12 @@ class groupnews_model extends CI_Model {
         $row = $result->row();
         return $row;
     }
+    
+    function groupnews_frontent_active(){
+        $sql = "SELECT g.* FROM groupnews g WHERE g.active = '1' ORDER BY g.level ASC";
+        $result = $this->db->query($sql);
+        return $result;
+    }
 
 }
 
