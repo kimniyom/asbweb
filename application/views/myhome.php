@@ -32,6 +32,7 @@ $style = $this->menubar_model->get_style();
         $("#controlnewhot").show();
         $("#controlnew").show();
         $(".BL").show();
+        $("#newsgroup").show();
     });
 
     function loadhomepage() {

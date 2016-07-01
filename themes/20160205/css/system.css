@@ -493,6 +493,16 @@ section{
     text-decoration: none;
 }
 
+.text-responsive
+{
+    /*white-space:nowrap;*/
+    width:90%; 
+    max-height:55px;
+    overflow:hidden;
+    /*border:1px solid #008BCE;*/
+    text-overflow:ellipsis;
+}
+
 
 
 

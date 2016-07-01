@@ -26,17 +26,18 @@ $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();
 
 $list = array(
-    array('url' => 'news', 'label' => 'ข่าว'),
+    array('url' => 'news/newsall/'.$group->id, 'label' => $group->groupname),
         //array('url' => '', 'label' => 'menu2')
 );
 
 $active = $head;
 ?>
 <div class="row" style=" margin: 0px; padding: 0px;">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-left: 0px;">
-        <h3 id="head_submenu"><i class="fa fa-newspaper-o"></i> <?php echo $head ?></h3>
+  
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left: 0px;">
+        <h3 id="head_submenu">ข่าว</h3>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-right: 0px;">
+    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="padding-right: 0px;">
         <?php echo $model->breadcrumb($list, $active); ?>
     </div>
 </div>
@@ -127,7 +128,7 @@ $active = $head;
                             }
                             ?><br/>
                         </p>
-                        <a href="<?php echo site_url('news/view/' . $hots->id) ?>">
+                        <a href="<?php echo site_url('news/view/' . $hots->id.'/'.$hots->groupnews) ?>">
                             <button type="button" class="btn btn-danger btn-sm" id="btn-card"> อ่านข่าว ...</button>
                         </a>
                     </div>
@@ -172,7 +173,7 @@ $active = $head;
                         }
                         ?><br/>
                     </p>
-                    <a href="<?php echo site_url('news/view/' . $news->id) ?>">
+                    <a href="<?php echo site_url('news/view/' . $news->id.'/'.$news->groupnews) ?>">
                         <button type="button" class="btn btn-primary btn-sm" id="btn-card"> อ่านข่าว ...</button>
                     </a>
                 </div>

@@ -20,15 +20,16 @@ class news_model extends CI_Model {
             $limits = $limit;
         }
         $this->db->cache_on();
-        $sql = "SELECT *
+        $sql = "SELECT N.*,M.name,M.lname,g.groupname,g.headcolor,g.background,IM.*
                     FROM tb_news N LEFT JOIN (SELECT MAX(id),new_id,images FROM images_news GROUP BY new_id) IM ON N.id = IM.new_id
                     INNER JOIN mas_user M ON N.user_id = M.user_id
+                    INNER JOIN groupnews g ON N.groupnews = g.id
                     ORDER BY N.id DESC
                     LIMIT $limits ";
         return $this->db->query($sql);
     }
-    
-    function get_news_limit_group($group = null,$limit = null) {
+
+    function get_news_limit_group($group = null, $limit = null) {
         if (empty($limit)) {
             $limits = 6;
         } else {
@@ -116,6 +117,12 @@ class news_model extends CI_Model {
         return $this->db->count_all("tb_news");
     }
 
+    function countgroup($groupID = null) {
+        $sql = "SELECT COUNT(*) AS TOTAL FROM tb_news WHERE groupnews = '$groupID' ";
+        $rs = $this->db->query($sql)->row();
+        return $rs->TOTAL;
+    }
+
     // Fetch data according to per_page limit.
     public function fetch_data($limit, $start) {
         if ($start != '') {
@@ -127,6 +134,21 @@ class news_model extends CI_Model {
       FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
       ORDER BY date DESC
       LIMIT $pagestart,$limit";
+        return $this->db->query($sql);
+    }
+
+    // Fetch data according to per_page limit.
+    public function fetch_data_group($limit, $start, $group) {
+        if ($start != '') {
+            $pagestart = $start;
+        } else {
+            $pagestart = 0;
+        }
+        $sql = "SELECT n.*,m.name,m.lname
+                FROM tb_news n INNER JOIN mas_user m ON n.user_id = m.user_id
+                WHERE n.groupnews = '$group'
+                ORDER BY date DESC
+                LIMIT $pagestart,$limit";
         return $this->db->query($sql);
     }
 

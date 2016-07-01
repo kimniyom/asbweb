@@ -129,4 +129,33 @@ class takmoph_libraries {
         return substr(str_repeat(md5(rand()), ceil($length / 32)), 0, $length);
     }
 
+    function setcolumn($column = null, $images = null, $title = null, $date = null, $id = null,$group = null) {
+        if (!empty($images)) {
+            $img = "<img src='" . base_url() . "upload_images/news/" . $images . "' class='img-responsive img-polaroid' style='height:100px;'/>";
+        } else {
+            $img = "<img src='" . base_url() . "images/News-Mic-iPhone-icon.jpg' class='img-responsive img_news' style='max-width: 90px;'/>";
+        }
+        /*
+          $text = strlen($title);
+          if ($text > 250) {
+          //echo iconv_substr($news->titel,'0','100')."...";
+          $settitle = mb_substr($title, 0, 150, 'UTF-8') . "...";
+          } else {
+          $settitle = $title;
+          }
+         */
+        $str = "
+          <div class='font_news'>
+            <a href='" . site_url('news/view/' . $id.'/'.$group) . "'>
+                <div class='media hvr-bounce-to-right' id='box-lastnews' style='width: 100%; margin-bottom: 10px;'>
+                    <span  class='pull-left'>" . $img . "</span>
+                    <div clas='media-body'><font class='text-responsive'>" . $title . "</font><br/>
+                        <font class='pull-right' style='font-size: 12px; margin-right:10px;'>" . $this->thaidate($date) . "</font>
+                    </div>
+                </div>
+            </a>
+          </div>";
+        return $str;
+    }
+
 }

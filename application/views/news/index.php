@@ -43,7 +43,7 @@ $list = "";
                     <?php echo $news->titel ?><br/>
                     <font style=" font-size: 12px;" class="pull-right"><?php echo $model->thaidate($news->date) ?></font>
                 </p>
-                <a href="<?php echo site_url('news/view/' . $news->id) ?>">
+                <a href="<?php echo site_url('news/view/' . $news->id.'/'.$group->id) ?>">
                     <button type="button" class="btn btn-primary btn-sm" id="btn-card"> อ่านข่าว ...</button>
                 </a>
             </div>

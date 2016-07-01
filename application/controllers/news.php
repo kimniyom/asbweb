@@ -34,11 +34,11 @@ class news extends CI_Controller {
 
         /*
           แบ่งหน้า
-        */
+         */
 
-        $config['base_url'] = site_url("news/page");//url ของหน้าที่เราจะแบ่ง
-        $config['total_rows'] = $count;//จำนวนอะไรบางอย่างทั้งหมดของเราโดยปกติจะใช้การนับจำนวนใน database เอา
-        $config['per_page'] = 8;//จำนวนอะไรบางอย่างของเราต่อหนึ่งหน้า ซึ่งจะได้จำนวนหน้าทั้งหมดเท่ากับ total_rows/per_page
+        $config['base_url'] = site_url("news/page"); //url ของหน้าที่เราจะแบ่ง
+        $config['total_rows'] = $count; //จำนวนอะไรบางอย่างทั้งหมดของเราโดยปกติจะใช้การนับจำนวนใน database เอา
+        $config['per_page'] = 8; //จำนวนอะไรบางอย่างของเราต่อหนึ่งหน้า ซึ่งจะได้จำนวนหน้าทั้งหมดเท่ากับ total_rows/per_page
         $config['uri_segment'] = 3;
 
         //config for bootstrap pagination class integration
@@ -64,12 +64,11 @@ class news extends CI_Controller {
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
 
-        $data['new'] = $this->news->fetch_data($config['per_page'],$this->uri->segment(3));
+        $data['new'] = $this->news->fetch_data($config['per_page'], $this->uri->segment(3));
 
         $this->pagination->initialize($config);
         $data['s_pagination'] = $this->pagination->create_links();
         //$data['page'] = $page;
-
         //$this->load->view('pages/test', $a_data);
 
         $this->output($data, $page, $head);
@@ -85,11 +84,11 @@ class news extends CI_Controller {
 
         /*
           แบ่งหน้า
-        */
+         */
 
-        $config['base_url'] = site_url("news/page");//url ของหน้าที่เราจะแบ่ง
-        $config['total_rows'] = $count;//จำนวนอะไรบางอย่างทั้งหมดของเราโดยปกติจะใช้การนับจำนวนใน database เอา
-        $config['per_page'] = 8;//จำนวนอะไรบางอย่างของเราต่อหนึ่งหน้า ซึ่งจะได้จำนวนหน้าทั้งหมดเท่ากับ total_rows/per_page
+        $config['base_url'] = site_url("news/page"); //url ของหน้าที่เราจะแบ่ง
+        $config['total_rows'] = $count; //จำนวนอะไรบางอย่างทั้งหมดของเราโดยปกติจะใช้การนับจำนวนใน database เอา
+        $config['per_page'] = 8; //จำนวนอะไรบางอย่างของเราต่อหนึ่งหน้า ซึ่งจะได้จำนวนหน้าทั้งหมดเท่ากับ total_rows/per_page
         $config['uri_segment'] = 3;
 
         //config for bootstrap pagination class integration
@@ -115,18 +114,15 @@ class news extends CI_Controller {
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
 
-        $data['new'] = $this->news->fetch_data($config['per_page'],$this->uri->segment(3));
+        $data['new'] = $this->news->fetch_data($config['per_page'], $this->uri->segment(3));
 
         $this->pagination->initialize($config);
         $data['s_pagination'] = $this->pagination->create_links();
         //$data['page'] = $page;
-
         //$this->load->view('pages/test', $a_data);
 
         $this->output($data, $page, $head);
     }
-
-
 
     public function show_detail_news($new_id = '') {
         $data['news'] = $this->news->get_news_where($new_id);
@@ -138,24 +134,128 @@ class news extends CI_Controller {
         $this->output($data, $page, $head);
     }
 
-    public function view($new_id = '') {
+    public function view($new_id = null, $group_id = null) {
+        $group = $this->groupnews->get_groupnews_where($group_id);
+        $data['group'] = $group;
         $maxread = $this->news->max_read($new_id);
         $maxnew = ($maxread + 1);
         $columns = array("views" => $maxnew);
-        $this->db->update("tb_news",$columns,"id = '$new_id' ");
+        $this->db->update("tb_news", $columns, "id = '$new_id' ");
         $data['near'] = $this->news->last_news();
         $data['hot'] = $this->news->hot();
         $data['news'] = $this->news->get_news_where($new_id);
         $data['images'] = $this->news->get_images_news($new_id);
         $data['images_first'] = $this->news->get_first_images_news($new_id);
         $page = "news/view";
-        $head = "ข่าวประชาสัมพันธ์";
+        $head = "ข่าว";
 
         $this->output($data, $page, $head);
     }
 
     public function page_news() {
         $this->load->view('from/page_news');
+    }
+
+    public function newsall() {
+        //$deta['new'] = $this->news->get_news();
+        $group = $this->groupnews->get_groupnews_where($this->uri->segment(3));
+        $data['group'] = $group;
+        $count = $this->news->countgroup($this->uri->segment(3));
+        //$page = "web_page/news_all";
+        $page = "news/index";
+        $head = $group->groupname;
+
+        /*
+          แบ่งหน้า
+         */
+
+        $config['total_rows'] = $count; //จำนวนอะไรบางอย่างทั้งหมดของเราโดยปกติจะใช้การนับจำนวนใน database เอา
+        $config['per_page'] = 15; //จำนวนอะไรบางอย่างของเราต่อหนึ่งหน้า ซึ่งจะได้จำนวนหน้าทั้งหมดเท่ากับ total_rows/per_page
+        $config['uri_segment'] = 4;
+
+        $config['base_url'] = site_url("news/pagegroup/" . $this->uri->segment(3)); //url ของหน้าที่เราจะแบ่ง
+        //config for bootstrap pagination class integration
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+
+
+        $config['first_link'] = 'หน้าแรก';
+        $config['last_link'] = 'หน้าสุดท้าย';
+
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = '<li class="prev">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $data['new'] = $this->news->fetch_data_group($config['per_page'], $this->uri->segment(4), $this->uri->segment(3));
+
+        $this->pagination->initialize($config);
+        $data['s_pagination'] = $this->pagination->create_links();
+        //$data['page'] = $page;
+        //$this->load->view('pages/test', $a_data);
+
+        $this->output($data, $page, $head);
+    }
+
+    public function pagegroup() {
+        //$deta['new'] = $this->news->get_news();
+        $groupID = $this->uri->segment(3);
+        $group = $this->groupnews->get_groupnews_where($groupID);
+        $data['group'] = $group;
+        $count = $this->news->countgroup($groupID);
+        //$page = "web_page/news_all";
+        $page = "news/index";
+        $head = $group->groupname;
+
+        /*
+          แบ่งหน้า
+         */
+
+        $config['base_url'] = site_url("news/pagegroup/" . $groupID); //url ของหน้าที่เราจะแบ่ง
+        $config['total_rows'] = $count; //จำนวนอะไรบางอย่างทั้งหมดของเราโดยปกติจะใช้การนับจำนวนใน database เอา
+        $config['per_page'] = 15; //จำนวนอะไรบางอย่างของเราต่อหนึ่งหน้า ซึ่งจะได้จำนวนหน้าทั้งหมดเท่ากับ total_rows/per_page
+        $config['uri_segment'] = 4;
+        //config for bootstrap pagination class integration
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+
+
+        $config['first_link'] = 'หน้าแรก';
+        $config['last_link'] = 'หน้าสุดท้าย';
+
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = '<li class="prev">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $data['new'] = $this->news->fetch_data_group($config['per_page'], $this->uri->segment(4), $groupID);
+
+        $this->pagination->initialize($config);
+        $data['s_pagination'] = $this->pagination->create_links();
+        //$data['page'] = $page;
+        //$this->load->view('pages/test', $a_data);
+
+        $this->output($data, $page, $head);
     }
 
 }
