@@ -249,7 +249,7 @@
                 ## Menu Left 
                 #####################
                 -->
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" id="side-left">
                     <!--
                     ################ 
                     ## Menu And News 
@@ -420,7 +420,7 @@
                 ## Content right 
                 #####################
                 -->
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 BR">
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 BR" id="side-right">
                     <!-- 
                     ####################
                     ## ข่าวล่าสุด

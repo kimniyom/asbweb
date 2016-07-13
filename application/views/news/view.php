@@ -24,16 +24,16 @@
 <?php
 $this->load->library('takmoph_libraries');
 $model = new takmoph_libraries();
-
+$groupnewsModel = new groupnews_model();
 $list = array(
-    array('url' => 'news/newsall/'.$group->id, 'label' => $group->groupname),
+    array('url' => 'news/newsall/' . $group->id, 'label' => $group->groupname),
         //array('url' => '', 'label' => 'menu2')
 );
 
 $active = $head;
 ?>
-<div class="row" style=" margin: 0px; padding: 0px;">
-  
+<div class="row" style=" margin: 0px; padding-left: 5px;">
+
     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left: 0px;">
         <h3 id="head_submenu">ข่าว</h3>
     </div>
@@ -128,7 +128,7 @@ $active = $head;
                             }
                             ?><br/>
                         </p>
-                        <a href="<?php echo site_url('news/view/' . $hots->id.'/'.$hots->groupnews) ?>">
+                        <a href="<?php echo site_url('news/view/' . $hots->id . '/' . $hots->groupnews) ?>">
                             <button type="button" class="btn btn-danger btn-sm" id="btn-card"> อ่านข่าว ...</button>
                         </a>
                     </div>
@@ -138,6 +138,17 @@ $active = $head;
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <div class="list-group">
+            <div class="list-group-item active">
+                ประเภทข่าว
+            </div>
+            <?php
+            $groupnews = $groupnewsModel->get_groypnews_active();
+            foreach ($groupnews->result() as $rs):
+                ?>
+                <a href="<?php echo site_url('news/newsall/' . $rs->id) ?>" class="list-group-item"><?php echo $rs->groupname ?></a>
+            <?php endforeach; ?>
+        </div>
         <h4 id="head_submenu" style=" color: #3399ff; font-weight: bold; margin-left: 15px;"><i class="fa fa-newspaper-o"></i> ข่าวล่าสุด</h4>
         <hr/>
         <?php
@@ -173,7 +184,7 @@ $active = $head;
                         }
                         ?><br/>
                     </p>
-                    <a href="<?php echo site_url('news/view/' . $news->id.'/'.$news->groupnews) ?>">
+                    <a href="<?php echo site_url('news/view/' . $news->id . '/' . $news->groupnews) ?>">
                         <button type="button" class="btn btn-primary btn-sm" id="btn-card"> อ่านข่าว ...</button>
                     </a>
                 </div>
@@ -200,5 +211,13 @@ $active = $head;
             openEffect: "none",
             closeEffect: "none"
         });
+    });
+</script>
+
+<script type="text/javascript">
+    $("#document").ready(function(){
+       $("#side-left").hide();
+       $("#side-right").removeClass('col-xs-12 col-sm-12 col-md-9 col-lg-9 BR');
+       $("#side-right").addClass('col-md-12 col-lg-12');
     });
 </script>

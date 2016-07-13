@@ -14,6 +14,12 @@ class template_model extends CI_Model {
     }
 
     // Fetch data according to per_page limit.
+    public function get_template_active() {
+        $this->db->cache_on();
+        $sql = "SELECT * FROM template WHERE active = '1' LIMIT 1";
+        $query = $this->db->query($sql)->row();
+        return $query;
+    }
     public function get_template() {
         $this->db->cache_on();
         $sql = "SELECT * FROM template WHERE active = '1' LIMIT 1";
