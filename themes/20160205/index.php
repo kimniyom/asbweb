@@ -9,6 +9,7 @@
         $this->load->driver('cache');
         $barmodel = new menubar_model();
         $lib = new takmoph_libraries();
+        $groupnewsModel = new groupnews_model();
         $newsModel = new news_model();
         $photoModel = new photo_model();
         $style = $barmodel->get_style();
@@ -463,21 +464,108 @@
                                             }
                                             ?><br/>
                                         </p>
-                                        <a href="<?php echo site_url('news/view/' . $new->id) ?>">
-                                            <button type="button" class="btn btn-danger btn-xs" id="btn-card"> อ่านข่าว ...</button>
+                                        <button type="button" class="btn btn-default disabled btn-xs" id="btn-card" style="background: <?php echo $new->background;?>;color:<?php echo $new->headcolor;?>;right:80px;"><?php echo $new->groupname ?></button>
+                                        <a href="<?php echo site_url('news/view/' . $new->id.'/'.$new->groupnews) ?>">
+                                            <button type="button" class="btn btn-danger btn-xs" id="btn-card">อ่านข่าว ...</button>
                                         </a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
+                        <!--
                         <div class="row" style=" clear: both;">
-                            <a href="<?php echo site_url('news') ?>" class=" pull-right" style=" margin-right: 20px;">
+                            <a href="<?//php echo site_url('news') ?>" class=" pull-right" style=" margin-right: 20px;">
                                 <button type="button" class="btn btn-default btn-sm" style=" margin-right: 0px;">ข่าวทั้งหมด <i class="fa fa-arrow-circle-o-right"></i></button>
                             </a>
                         </div>
+                        -->
                         <div class="bottom-line"></div>
+
+                        <?php
+                        $groupN = $groupnewsModel->groupnews_frontent_active();
+                        foreach ($groupN->result() as $Gn):
+                            $homenewss = $newsModel->get_news_limit_group($Gn->id, 4);
+                            if ($Gn->headcolor != '') {
+                                $headcolor = $Gn->headcolor;
+                            } else {
+                                $headcolor = "#eeeeee";
+                            }
+                            if ($Gn->background != '' || $Gn->background != '#FFFFFF') {
+                                $padding = "5px;";
+                            } else {
+                                $padding = "none;";
+                            }
+                            if ($homenewss->num_rows() > 0):
+                                ?>
+                                <div style="background:<?php echo $Gn->background ?>; padding:<?php echo $padding; ?>;">
+                                    <h3 style="color:<?php echo $headcolor ?>"><i class="fa fa-newspaper-o"></i> <?php echo $Gn->groupname ?></h3>
+                                    <hr id="hr" style="border-color:<?php echo $headcolor ?>"/>
+                                    <div class="row">
+                                        <?php
+                                        $i = 0;
+                                        foreach ($homenewss->result() as $news):
+                                            $i++;
+                                            ?>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-<?php echo $Gn->column ?>">
+
+                                                <?php
+                                                if ($Gn->column == '12') {
+                                                    echo $lib->setcolumn($Gn->column, $news->images, $news->titel, $news->date, $news->id,$news->groupnews);
+                                                } else {
+                                                    ?>
+                                                    <div class="container-card" style="max-height: 200px;border-color:<?php echo $headcolor ?>">
+                                                        <div class="img-wrapper">
+                                                            <?php if (!empty($news->images)) { ?>
+                                                                <img src="<?php echo base_url() ?>upload_images/news/<?php echo $news->images; ?>" class="img-responsive img-polaroid" style="height:100px;"/>
+                                                            <?php } else { ?>
+                                                                <center>
+                                                                    <img src="<?php echo base_url() ?>images/News-Mic-iPhone-icon.jpg" class="img-responsive img_news" style="height:100px;"/>
+                                                                </center>
+                                                            <?php } ?>
+                                                        </div>
+                                                        <p class="detail text-responsive" style=" font-size: 12px;">
+                                              
+                                                            <?php
+                                                            //$this->session->userdata('width');
+                                                            /*
+                                                            $text = strlen($news->titel);
+                                                            if ($text > 160) {
+                                                                //echo iconv_substr($news->titel,'0','100')."...";
+                                                                if ($this->session->userdata('width') > 1000 || $this->session->userdata('width') <= 768) {
+                                                                    print mb_substr($news->titel, 0, 30, 'UTF-8') . "...";
+                                                                } else {
+                                                                    echo $news->titel;
+                                                                }
+                                                            } else {
+                                                                echo $news->titel;
+                                                            }
+                                                            */
+                                                            echo $news->titel;
+                                                            ?><br/>
+                                                   
+                                                        </p>
+                                                        <a href="<?php echo site_url('news/view/' . $news->id.'/'.$news->groupnews) ?>">
+                                                            <button type="button" class="btn btn-danger btn-xs" id="btn-card"> อ่านข่าว ...</button>
+                                                        </a>
+                                                    </div>
+                                                <?php } ?>
+                                            </div><!-- End Col -->
+
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="row" style=" clear: both;">
+                                        <a href="<?php echo site_url('news/newsall/'.$Gn->id) ?>" class=" pull-right" style=" margin-right: 20px;">
+                                            <button type="button" class="btn btn-default btn-sm" style=" margin-right: 0px;">ข่าวทั้งหมด <i class="fa fa-arrow-circle-o-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="bottom-line"></div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
                     </div>
                     <!-- EndSlide News -->
+
 
                     <!-- 
                      ################

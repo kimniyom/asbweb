@@ -24,16 +24,6 @@
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/models/menu_model.php</file>
             <file>file:/C:/xampp/htdocs/takmoph2015upgrad/application/views/admin/show_dengue.php</file>
         </group>
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/template/20160205/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/backend/groupnews.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/libraries/takmoph_libraries.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/groupnews/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/config/autoload.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/views/backend/groupnews/update.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/controllers/news.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/news_model.php</file>
-            <file>file:/Applications/MAMP/htdocs/asbweb/application/models/groupnews_model.php</file>
-        </group>
+        <group name="yii"/>
     </open-files>
 </project-private>

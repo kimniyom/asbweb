@@ -6,7 +6,7 @@
         ?>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <center>
-                <p><?php echo $rs->template?></p>
+                <p><?php echo $rs->template ?></p>
             </center>
             <a class="hover14">
                 <div class="container-card" style="height:400px;">
@@ -20,8 +20,10 @@
                             <button type="button" class="btn btn-default btn-sm" 
                                     onclick="set_template('<?php echo $rs->id ?>')">
                                 <i class="fa fa-image text-success"></i> ใช้ Template นี้</button>
-                            <button type="button" class="btn btn-default btn-sm" onclick="delete_template('<?php echo $rs->id ?>')">
-                                <i class="fa fa-trash text-danger"></i> ลบ</button>
+                            <!--
+                        <button type="button" class="btn btn-default btn-sm" onclick="delete_template('<?php //echo $rs->id  ?>')">
+                            <i class="fa fa-trash text-danger"></i> ลบ</button>
+                            -->
                         <?php } else { ?>
                             <div class="btn btn-danger disabled">ถูกใช้เป็น Template ปัจจุบัน</div>
                         <?php } ?>
@@ -46,7 +48,7 @@
             var data = {id: id};
             $.post(url, data, function (success) {
                 //alert(success);
-                
+
                 swal({title: "Success", text: "ลบข้อมูลแล้ว ...", type: "success",
                     showCancelButton: false,
                     loseOnConfirm: true,
@@ -54,7 +56,7 @@
                         function () {
                             window.location.reload();
                         });
-                        
+
             });
         }
     }

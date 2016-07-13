@@ -281,7 +281,7 @@
                                 if ($rs->mas_status == '0') {
                                     ?>
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
-                                        <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;">
+                                        <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;" data-toggle="tooltip" data-placement="top" title="<?php echo $rs->mas_menu ?>">
                                             <div id="submenu" class="btn btn-block hvr-trim" 
                                                  style="background:<?php echo $rs->bgcolor ?>;
                                                  color:<?php echo $rs->textcolor ?>; 
@@ -297,7 +297,7 @@
                                 <?php } else if ($rs->mas_status == '2') {
                                     ?>
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
-                                        <a href="<?php echo $rs->link_out; ?>" target="_blank" style=" text-decoration: none;">
+                                        <a href="<?php echo $rs->link_out; ?>" target="_blank" style=" text-decoration: none;" data-toggle="tooltip" data-placement="top" title="<?php echo $rs->mas_menu ?>">
                                             <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
                                                 <div class="text-menu"> 
                                                     <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/>
@@ -310,7 +310,7 @@
                                 } else {
                                     ?>
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id="Smenu">
-                                        <a href="<?php echo site_url('menu/submenu/' . $rs->id); ?>" style=" text-decoration: none;">
+                                        <a href="<?php echo site_url('menu/submenu/' . $rs->id); ?>" style=" text-decoration: none;" data-toggle="tooltip" data-placement="top" title="<?php echo $rs->mas_menu ?>">
                                             <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">                              
                                                 <div class="text-menu"> 
                                                     <img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/> <?= $rs->mas_menu ?>
@@ -688,7 +688,10 @@
                     });
                 }
             });
-
+            
+             $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
         </script>
     </body>
 </html>

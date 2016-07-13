@@ -290,7 +290,9 @@
 
                             <?php
                             $menu = $this->tak->get_mas_menu();
+                            $ii = 0;
                             foreach ($menu->result() as $rs):
+                                $ii++;
                                 $menu_model = new menu_model();
                                 //$color = $menu_model->get_color($rs->menu_color);
                                 ?>
@@ -298,7 +300,7 @@
                                     <?php
                                     if ($rs->mas_status == '0') {
                                         ?>
-                                        <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;">
+                                        <a href="<?= site_url($rs->link . '/' . $rs->admin_menu_id . '/' . $rs->mas_menu) ?>" style="text-decoration: none;" data-toggle="tooltip" data-placement="top" title="<?php echo $rs->mas_menu ?>">
 
                                             <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
                                                 <div id="submenu_img"><img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/></div>
@@ -312,7 +314,7 @@
                                     <?php } else if ($rs->mas_status == '2') {
                                         ?>
 
-                                        <a href="<?php echo $rs->link_out; ?>" target="_blank" style=" text-decoration: none;">
+                                        <a href="<?php echo $rs->link_out; ?>" target="_blank" style=" text-decoration: none;" data-toggle="tooltip" data-placement="top" title="<?php echo $rs->mas_menu ?>">
                                             <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
                                                 <div id="submenu_img"><img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/></div>
                                                 <center>
@@ -324,8 +326,7 @@
                                         <?php
                                     } else {
                                         ?>
-
-                                        <a href="<?php echo site_url('menu/submenu/' . $rs->id); ?>" style=" text-decoration: none;">
+                                        <a href="<?php echo site_url('menu/submenu/' . $rs->id); ?>" style=" text-decoration: none;" data-toggle="tooltip" data-placement="top" title="<?php echo $rs->mas_menu ?>">
                                             <div id="submenu" class="btn btn-block hvr-trim" style="background:<?php echo $rs->bgcolor ?>;color:<?php echo $rs->textcolor ?>; border-radius:0px;">
                                                 <div id="submenu_img"><img src="<?= base_url() ?>icon_menu/<?= $rs->menu_icon ?>" style="height:32px;"/></div>
                                                 <center>
@@ -370,7 +371,13 @@
                             <!-- Slide News -->
                             <?php
                             $i = 0;
-                            $homenews = $newsModel->get_news_limit();
+                            $countMenu = ($ii + 1);
+                            if ($countMenu <= 6) {
+                                $limit = "4";
+                            } else {
+                                $limit = "6";
+                            }
+                            $homenews = $newsModel->get_news_limit($limit);
                             foreach ($homenews->result() as $new):
                                 $i++;
                                 ?>
@@ -397,7 +404,7 @@
                                 </div>
 
                             <?php endforeach; ?>
-                            
+
                             <!-- EndSlide News -->
                         </div><!-- End Col -->
 
@@ -681,6 +688,11 @@
                 }
             });
 
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
+
+
     </body>
 </html>
