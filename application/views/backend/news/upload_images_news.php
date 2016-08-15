@@ -30,8 +30,10 @@
             'swf': '<?= base_url() ?>lib/images/uploadify.swf', //โฟเดอร์ที่เก็บไฟล์ปุ่มอัพโหลด
             'uploader': '<?= site_url('backend/news/upload_images_news/' . $new_id) ?>', //เมื่อ submit แล้วให้ action ไปที่ไฟล์ไหน
             'fileSizeLimit': '10MB', //อัพโหลดได้ครั้งละไม่เกิน 1024kb
+            /*
             'width': '350',
             'height': '40',
+            */
             'fileTypeExts': '*.gif; *.jpg; *.png; *.JPG;', //กำหนดชนิดของไฟล์ที่สามารถอัพโหลดได้
             'multi': true, //เปิดใช้งานการอัพโหลดแบบหลายไฟล์ในครั้งเดียว
             'queueSizeLimit': 10, //อัพโหลดได้ครั้งละ 5 ไฟล์
@@ -80,6 +82,4 @@ echo $model->breadcrumb_backend($list, $active);
 </form><br /><br /><br />
 
 <h4>อัลบั้มรูปภาพ</h4>
-<div class="well" style=" background: #FFF;" id="show_alum_news">
-
-</div>
+<div class="well" style=" background: #FFF;" id="show_alum_news"></div>
