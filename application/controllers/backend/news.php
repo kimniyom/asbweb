@@ -140,28 +140,38 @@ class news extends CI_Controller {
 
     public function upload_images_news($new_id = '') {
         $targetFolder = 'upload_images/news'; // Relative to the root
-        $toDatabase = true;
         if (!empty($_FILES)) {
             $tempFile = $_FILES['Filedata']['tmp_name'];
             $FULLNAME = $_FILES['Filedata']['name'];
             $type = substr($FULLNAME, -3);
             $Name = "img_" . random_string('alnum', 30) . "." . $type;
             $targetFile = $targetFolder . '/' . $Name;
-
-            //$targetFile = $targetFolder . '/' . $_FILES['Filedata']['name'];
-            $targetFile = $targetFolder . '/' . $Name;
             // Validate the file type
             $fileTypes = array('jpg', 'jpeg', 'gif', 'png', 'JPG'); // File extensions
             $fileParts = pathinfo($_FILES['Filedata']['name']);
             //$GalleryShot = $_FILES['Filedata']['name'];
             if (in_array($fileParts['extension'], $fileTypes)) {
-                $file_string = addslashes(fread(fopen($thefile[tmp_name], "r"), $thefile[size]));
+                //$file_string = addslashes(fread(fopen($thefile[tmp_name], "r"), $thefile[size]));
+                
+                $width = 1280; //*** Fix Width & Heigh (Autu caculate) ***//
+                //$new_images = "Thumbnails_".$_FILES["Filedata"]["name"];
+                $size = getimagesize($_FILES['Filedata']['tmp_name']);
+                $height = round($width * $size[1] / $size[0]);
+                $images_orig = imagecreatefromjpeg($tempFile);
+                $photoX = imagesx($images_orig);
+                $photoY = imagesy($images_orig);
+                $images_fin = imagecreatetruecolor($width, $height);
+                imagecopyresampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+                imagejpeg($images_fin, "upload_images/news/" . $Name);
+                imagedestroy($images_orig);
+                imagedestroy($images_fin);
+                
                 $data = array(
                     'new_id' => $new_id,
                     'images' => $Name
                 );
                 $this->db->insert('images_news', $data);
-                move_uploaded_file($tempFile, $targetFile);
+                //move_uploaded_file($tempFile, $targetFile);
                 echo '1';
             } else {
                 echo 'Invalid file type.';
