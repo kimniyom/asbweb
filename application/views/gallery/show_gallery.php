@@ -26,7 +26,7 @@
     $text = strlen($head);
     if ($text > 70) {
         //echo iconv_substr($news->titel,'0','100')."...";
-        $active = mb_substr($result->title, 0, 30, 'UTF-8') . "...";
+        $active = mb_substr($album->title, 0, 30, 'UTF-8') . "...";
     } else {
         $active = $head;
     }
